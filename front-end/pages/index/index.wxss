@@ -53,3 +53,19 @@
   height: 40px;
   flex: 2 0 auto;
 }
+
+.goods-item {
+  border: 1px solid #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.goods-img {
+  height: 350rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.goods-price {
+  float: right;
+}
