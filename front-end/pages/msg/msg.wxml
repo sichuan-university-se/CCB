@@ -1,2 +1,45 @@
 <!--pages/msg/msg.wxml-->
-<text>pages/msg/msg.wxml</text>
+
+<view class="container">
+  <view class="swiper-tab">
+    <view class="tab-item {{ currentTab == 0 ? 'on' : '' }}" data-current="0" bindtap="switchTab">消息</view>
+    <view class="tab-item {{ currentTab == 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">通知</view>
+  </view>
+
+  <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange">
+    <swiper-item>
+      <view class="cu-list menu-avatar body">
+        <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{msgList}}" wx:key bindtap="checkChatRecord" data-index="{{item.id}}">
+          <image class="cu-avatar round lg" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="content">
+            <view class="text-grey">{{item.name}}</view>
+            <view class="text-gray text-sm">
+              {{item.lastMsg}}
+            </view>
+          </view>
+          <view class="action">
+            <view class="text-grey text-xs">{{item.time}}</view>
+            <view class="cu-tag round bg-grey sm {{item.isRead?'':'hide'}}">{{item.msgCount}}</view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="cu-list menu-avatar body">
+        <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{msgList}}" wx:key>
+          <image class="cu-avatar round lg" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="content">
+            <view class="text-grey">{{item.name}}</view>
+            <view class="text-gray text-sm">
+              {{item.lastMsg}}
+            </view>
+          </view>
+          <view class="action">
+            <view class="text-grey text-xs">{{item.time}}</view>
+            <view class="cu-tag round bg-grey sm {{item.isRead?'':'hide'}}">{{item.msgCount}}</view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

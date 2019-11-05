@@ -4,7 +4,8 @@
     "pages/msg/msg",
     "pages/self/self",
     "pages/logs/logs",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/chat/chat"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -14,6 +15,10 @@
     "enablePullDownRefresh": true
   },
   "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",

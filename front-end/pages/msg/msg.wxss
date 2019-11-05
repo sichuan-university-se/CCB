@@ -1,1 +1,36 @@
 /* pages/msg/msg.wxss */
+
+.swiper-tab {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 0 2px 0 #7a7070;
+  color: #7a7070;
+}
+
+.tab-item {
+  line-height: 40px;
+  flex: 1 0 auto;
+  text-align: center;
+}
+
+.on {
+  border-bottom: 1px solid red;
+  color: black;
+}
+
+.swiper {
+  width: 100%;
+  height: 1000px;
+}
+
+.body {
+  width: 690rpx;
+  margin: 30rpx;
+}
+
+.hide {
+  display: none;
+}

@@ -101,9 +101,7 @@
                 <view class="goods-img margin-bottom-xs" style="background-image: url(/assets/image/gakki{{index}}.jpg)"></view>
                 <view class="goods-info text-df">
                   {{item.title}}
-                  <text class="text-price text-red goods-price">
-                    {{item.price}}
-                  </text>
+                  <text class="text-price text-red goods-price">{{item.price}}</text>
                 </view>
                 <view class="goods-detail text-grey text-sm text-cut">
                   {{item.detail}}
@@ -115,5 +113,4 @@
       </view>
     </swiper-item>
   </swiper>
-
 </view>
