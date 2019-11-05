@@ -6,111 +6,117 @@
     <view class="tab-item {{ currentTab == 2 ? 'on' : '' }}" data-current="2" bindtap="switchTab">闲置交易</view>
   </view>
 
-  <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange">
+  <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
     <swiper-item>
-      <view class="swiper-item">
-        <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-        </swiper>
-        <view class="content body">
-          <view class="select-header">
-            <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
-            <button class="cu-btn round line-red">搜索</button>
-          </view>
-          <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{reqList}}" wx:key bindtap="checkReqDetail" data-index="{{index}}">
-              <view class="cu-avatar round lg" style="background-image:url(/assets/image/gakki{{index}}.jpg);"></view>
-              <view class="content">
-                <view class="text-grey">{{item.title}}</view>
-                <view class="text-gray text-sm flex">
-                  <text class="text-cut"> {{item.detail}} </text>
+      <scroll-view scroll-y='true' style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+        <view class="swiper-item">
+          <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+          </swiper>
+          <view class="content body">
+            <view class="select-header">
+              <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
+              <button class="cu-btn round line-red">搜索</button>
+            </view>
+            <view class="cu-list menu-avatar">
+              <view class="cu-item" wx:for="{{reqList}}" wx:key bindtap="checkReqDetail" data-index="{{index}}">
+                <image class="cu-avatar round lg" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
+                <view class="content">
+                  <view class="text-grey">{{item.title}}</view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-cut"> {{item.detail}} </text>
+                  </view>
                 </view>
-              </view>
-              <view class="action">
-                <view class="text-grey text-xs">22:20</view>
+                <view class="action">
+                  <view class="text-grey text-xs">22:20</view>
+                </view>
               </view>
             </view>
           </view>
         </view>
-      </view>
+      </scroll-view>
     </swiper-item>
     <swiper-item>
-      <view class="swiper-item">
-        <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-        </swiper>
-        <view class="content body">
-          <view class="select-header">
-            <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
-            <button class="cu-btn round line-red">搜索</button>
-          </view>
-          <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{actList}}" wx:key bindtap="checkActDetail" data-index="{{index}}">
-              <view class="cu-avatar round lg" style="background-image:url(/assets/image/gakki{{index}}.jpg);"></view>
-              <view class="content">
-                <view class="text-grey">{{item.title}}</view>
-                <view class="text-gray text-sm flex">
-                  <text class="text-cut"> {{item.detail}} </text>
+      <scroll-view scroll-y='true'>
+        <view class="swiper-item">
+          <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+          </swiper>
+          <view class="content body">
+            <view class="select-header">
+              <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
+              <button class="cu-btn round line-red">搜索</button>
+            </view>
+            <view class="cu-list menu-avatar">
+              <view class="cu-item" wx:for="{{actList}}" wx:key bindtap="checkActDetail" data-index="{{index}}">
+                <image class="cu-avatar round lg" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
+                <view class="content">
+                  <view class="text-grey">{{item.title}}</view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-cut"> {{item.detail}} </text>
+                  </view>
                 </view>
-              </view>
-              <view class="action">
-                <view class="text-grey text-xs">22:20</view>
+                <view class="action">
+                  <view class="text-grey text-xs">22:20</view>
+                </view>
               </view>
             </view>
           </view>
         </view>
-      </view>
+      </scroll-view>
     </swiper-item>
     <swiper-item>
-      <view class="swiper-item">
-        <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-          <swiper-item>
-            <view class="ad-swiper-item">广告位招租</view>
-          </swiper-item>
-        </swiper>
-        <view class="content body">
-          <view class="select-header">
-            <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
-            <button class="cu-btn round line-red">搜索</button>
-          </view>
-          <view class="grid col-2">
-            <view wx:for="{{goodsList}}" wx:key>
-              <view class="goods-item margin-xs padding-xs">
-                <view class="goods-img margin-bottom-xs" style="background-image: url(/assets/image/gakki{{index}}.jpg)"></view>
-                <view class="goods-info text-df">
-                  {{item.title}}
-                  <text class="text-price text-red goods-price">{{item.price}}</text>
-                </view>
-                <view class="goods-detail text-grey text-sm text-cut">
-                  {{item.detail}}
+      <scroll-view scroll-y='true'>
+        <view class="swiper-item">
+          <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+            <swiper-item>
+              <view class="ad-swiper-item">广告位招租</view>
+            </swiper-item>
+          </swiper>
+          <view class="content body">
+            <view class="select-header">
+              <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
+              <button class="cu-btn round line-red">搜索</button>
+            </view>
+            <view class="grid col-2">
+              <view wx:for="{{goodsList}}" wx:key>
+                <view class="goods-item margin-sm">
+                  <image class="goods-img padding-0" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
+                  <view class="goods-info text-df padding-lr-xs">
+                    {{item.title}}
+                    <text class="text-price text-red goods-price">{{item.price}}</text>
+                  </view>
+                  <view class="goods-detail text-grey text-sm text-cut padding-lr-xs padding-bottom-xs">
+                    {{item.detail}}
+                  </view>
                 </view>
               </view>
             </view>
           </view>
         </view>
-      </view>
+      </scroll-view>
     </swiper-item>
   </swiper>
 </view>

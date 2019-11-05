@@ -8,6 +8,7 @@
   align-items: flex-start;
   box-shadow: 0 0 2px 0 #7a7070;
   color: #7a7070;
+  background-color: #fff;
 }
 
 .tab-item {
@@ -29,6 +30,7 @@
 .body {
   width: 690rpx;
   margin: 30rpx;
+  overflow: scroll;
 }
 
 .hide {

@@ -118,6 +118,15 @@ Page({
         }
       })
     }
+    const that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          clientHeight: res.windowHeight - 102
+        })
+      },
+    })
+    console.log(this.data)
   },
   onShow: function() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {

@@ -1,5 +1,14 @@
 /**index.wxss**/
 
+swiper-item {
+  overflow: scroll;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
 .swiper-tab {
   width: 100%;
   height: 40px;
@@ -8,6 +17,7 @@
   align-items: flex-start;
   box-shadow: 0 0 2px 0 #7a7070;
   color: #7a7070;
+  background-color: #fff;
 }
 
 .tab-item {
@@ -18,12 +28,12 @@
 
 .on {
   border-bottom: 1px solid red;
-  color: black
+  color: black;
 }
 
 .swiper {
   width: 100%;
-  height: 800px;
+  margin-bottom: 60px;
 }
 
 .body {
@@ -60,10 +70,9 @@
   overflow: hidden;
 }
 
-.goods-img {
+.goods-item .goods-img {
   height: 350rpx;
-  background-repeat: no-repeat;
-  background-size: cover;
+  margin-bottom: 10rpx;
 }
 
 .goods-price {

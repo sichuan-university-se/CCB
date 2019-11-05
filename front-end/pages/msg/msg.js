@@ -48,7 +48,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {},
+  onLoad: function() {
+    const that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          clientHeight: res.windowHeight - 102
+        })
+      },
+    })
+    console.log(this.data)
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

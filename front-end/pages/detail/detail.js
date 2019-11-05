@@ -28,6 +28,5 @@ Page({
         image: '/assets/image/test.png'
       }
     })
-    console.log(this.data)
   },
 });
