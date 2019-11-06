@@ -1,11 +1,11 @@
 <!--pages/detail/detail.wxml-->
 
-<view class="cu-card dynamic">
+<view class="cu-card case">
   <view class="cu-item shadow">
     <view class="cu-list menu-avatar">
       <view class="text-center text-lg padding-sm">{{reqDetail.title}}</view>
       <view class="cu-item solids-top">
-        <view class="cu-avatar round lg" style="background-image:url(/assets/image/gakki0.jpg);"></view>
+        <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
         <view class="content flex-sub">
           <view>{{reqDetail.name}}</view>
           <view class="text-gray text-sm flex justify-between">
@@ -14,12 +14,13 @@
         </view>
       </view>
     </view>
-    <view class="text-content">
+    <view class="cu-item text-content margin-lr">
       {{reqDetail.detail}}
     </view>
-    <view class="grid flex-sub padding-lr col-1">
-      <view class="bg-img only-img" style="background-image:url({{reqDetail.image}});">
-      </view>
+    <!-- <view class="bg-img only-img" style="background-image:url({{reqDetail.image}});"> -->
+    <view class="image padding-lr">
+      <image src="/assets/image/test.png" mode="aspectFill"></image>
+      <!-- </view> -->
     </view>
     <view class="text-gray text-sm text-right padding">
       <text class="cuIcon-attentionfill margin-lr-xs"></text> 10

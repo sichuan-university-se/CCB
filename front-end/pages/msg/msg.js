@@ -42,6 +42,31 @@ Page({
         msgCount: 2,
         avatar: '/assets/image/gakki3.jpg'
       }
+    ],
+    noteList: [{
+        id: 1,
+        type: "act",
+        time: "20:00",
+        title: "坤坤12月川大演唱会组队"
+      },
+      {
+        id: 2,
+        type: "req",
+        time: "24:00",
+        title: "新裤子"
+      },
+      {
+        id: 3,
+        type: "act",
+        time: "12:00",
+        title: "刺猬乐队"
+      },
+      {
+        id: 4,
+        type: "req",
+        time: "08:00",
+        title: "nirvana"
+      }
     ]
   },
 
@@ -53,11 +78,10 @@ Page({
     wx.getSystemInfo({
       success: function(res) {
         that.setData({
-          clientHeight: res.windowHeight - 102
+          clientHeight: res.windowHeight - 105
         })
       },
     })
-    console.log(this.data)
   },
 
   /**
@@ -134,6 +158,11 @@ Page({
     console.log(e.currentTarget);
     wx.navigateTo({
       url: '../chat/chat?id=' + e.currentTarget.dataset.index,
+    })
+  },
+  checkNoteDetail: function(e) {
+    wx.navigateTo({
+      url: '../detail/detail?type=' + e.currentTarget.dataset.type + '&id=' + e.currentTarget.dataset.id,
     })
   }
 })

@@ -1,5 +1,10 @@
 /* pages/msg/msg.wxss */
 
+.container {
+  width: 100%;
+  height: 100%;
+}
+
 .swiper-tab {
   width: 100%;
   height: 40px;
@@ -9,6 +14,7 @@
   box-shadow: 0 0 2px 0 #7a7070;
   color: #7a7070;
   background-color: #fff;
+  z-index: 20;
 }
 
 .tab-item {
@@ -24,7 +30,7 @@
 
 .swiper {
   width: 100%;
-  height: 1000px;
+  margin-bottom: 60px;
 }
 
 .body {
@@ -36,3 +42,4 @@
 .hide {
   display: none;
 }
+

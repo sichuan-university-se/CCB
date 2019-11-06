@@ -27,7 +27,7 @@
               <button class="cu-btn round line-red">搜索</button>
             </view>
             <view class="cu-list menu-avatar">
-              <view class="cu-item" wx:for="{{reqList}}" wx:key bindtap="checkReqDetail" data-index="{{index}}">
+              <view class="cu-item" wx:for="{{reqList}}" wx:key bindtap="checkReqDetail" data-id="{{item.id}}">
                 <image class="cu-avatar round lg" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
                 <view class="content">
                   <view class="text-grey">{{item.title}}</view>
@@ -64,7 +64,7 @@
               <button class="cu-btn round line-red">搜索</button>
             </view>
             <view class="cu-list menu-avatar">
-              <view class="cu-item" wx:for="{{actList}}" wx:key bindtap="checkActDetail" data-index="{{index}}">
+              <view class="cu-item" wx:for="{{actList}}" wx:key bindtap="checkActDetail" data-id="{{item.id}}">
                 <image class="cu-avatar round lg" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
                 <view class="content">
                   <view class="text-grey">{{item.title}}</view>

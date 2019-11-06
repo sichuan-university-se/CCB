@@ -6,7 +6,7 @@
     <view class="tab-item {{ currentTab == 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">通知</view>
   </view>
 
-  <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange">
+  <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
     <swiper-item>
       <scroll-view scroll-y='true' style="height: {{clientHeight?clientHeight+'px':'auto'}}">
         <view class="cu-list menu-avatar body">
@@ -28,19 +28,13 @@
     </swiper-item>
     <swiper-item>
       <scroll-view scroll-y='true' style="height: {{clientHeight?clientHeight+'px':'auto'}}">
-        <view class="cu-list menu-avatar body">
-          <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{msgList}}" wx:key>
-            <image class="cu-avatar round lg" src="{{item.avatar}}" mode="aspectFill"></image>
-            <view class="content">
-              <view class="text-grey">{{item.name}}</view>
-              <view class="text-gray text-sm">
-                {{item.lastMsg}}
-              </view>
+        <view class="cu-card case margin-top-sm" wx:for="{{noteList}}" wx:key bindtap="checkNoteDetail" data-type="{{item.type}}">
+          <view class="note-date text-center text-gray text-sm">{{item.time}}</view>
+          <view class="cu-item shadow" style="margin-top: 10rpx">
+            <view class="image note-img">
+              <image src="/assets/image/test.png" mode="aspectFill"></image>
             </view>
-            <view class="action">
-              <view class="text-grey text-xs">{{item.time}}</view>
-              <view class="cu-tag round bg-grey sm {{item.isRead?'':'hide'}}">{{item.msgCount}}</view>
-            </view>
+            <view class="text-lg text-grey text-cut padding-lr-xs padding-bottom-xs">您发布的{{item.type=='act'?'组队活动':'需求任务'}}“{{item.title}}”已经有同学联系您啦，快去查看吧 您发布的组队活动已经有同学联系您啦，快去查看吧</view>
           </view>
         </view>
       </scroll-view>

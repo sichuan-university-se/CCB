@@ -5,7 +5,8 @@
     "pages/self/self",
     "pages/logs/logs",
     "pages/detail/detail",
-    "pages/chat/chat"
+    "pages/chat/chat",
+    "pages/goods/goods"
   ],
   "window": {
     "backgroundTextStyle": "dark",
