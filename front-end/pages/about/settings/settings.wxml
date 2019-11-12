@@ -1,0 +1,24 @@
+<!--pages/about/settings/settings.wxml-->
+<view>
+  <view class='text-center margin-tb text-lg  text-grey'>个人设置</view>
+  <view class="cu-list menu card-menu shadow-lg radius">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/auth/auth" hover-class="none">
+        <text class="cuIcon-profilefill text-red"></text>
+        <text class="text-grey">更改个人信息</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" bindtap="clearStorage">
+        <text class="cuIcon-deletefill text-cyan"></text>
+        <text class="text-grey">清除缓存</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content" bindtap="CopyEmail" data-email="returncs@foxmail.com">
+        <text class="cuIcon-mail text-green"></text>
+        <text class="text-grey">联系我们</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,8 +1,73 @@
 <!--pages/self/self.wxml-->
-<view class="userinfo">
-  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-  <block wx:else>
-    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </block>
-</view>
+
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg text-grey">
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname text-xl margin-top-xs text-bold">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class="text-xl margin-top-sm text-bold">川川帮
+      <text class="text-df text-bold">v1.0.0</text>
+    </view>
+  </view>
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue">{{visitNum}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-footprint text-yellow"></text> 足迹</view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-red">{{collectNum}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-favor text-yellow"></text> 收藏</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green">{{historyNum}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-calendar text-yellow"></text> 记录</view>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/auth/auth" hover-class="none">
+        <text class="cuIcon-profilefill text-green"></text>
+        <text class="text-grey">身份验证</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content" bindtap="CopyLink" data-link="https://github.com/sichuan-university-se/CCB">
+        <text class="cuIcon-github text-grey"></text>
+        <text class="text-grey">GitHub</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/about/about" hover-class="none">
+        <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">关于川川帮</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <view class="content" bindtap="showQrcode">
+        <text class="cuIcon-appreciatefill text-red"></text>
+        <text class="text-grey">赞赏支持</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/proposal/proposal" hover-class="none">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/settings/settings" hover-class="none">
+        <text class="cuIcon-settingsfill text-orange"></text>
+        <text class="text-grey">个人设置</text>
+      </navigator>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>

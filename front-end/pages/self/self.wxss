@@ -1,4 +1,5 @@
 /* pages/self/self.wxss */
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -6,12 +7,30 @@
 }
 
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 100%;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.UCenter-bg {
+  height: 400rpx;
+  display: flex;
+  justify-content: center;
+  padding-top: 40rpx;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+
+map, .mapBox {
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+
+map, .mapBox {
+  width: 750rpx;
+  height: 300rpx;
 }

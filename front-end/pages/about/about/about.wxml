@@ -1,0 +1,11 @@
+<!--pages/about/about.wxml-->
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于川川帮</view>
+  <view class='text-content'>
+    <view>Hi！同学你好~欢迎使用川大校内小程序！</view>
+    <view class='margin-top-sm'>该项目是由四川大学2016级计算机生物学的4名同学开发的为解决校内需求的微信小程序，主要聚焦于校内常见需求，如活动组队，闲置交易，校内需求如帮取快递，跨校区带文件等，由于双方之间没有一个进行沟通的渠道，所以该项目应运而生。</view>
+    <view class='margin-top-sm'>项目是开源的，如果你对于该项目有一些好的想法，可以在GitHub上进行提交，也可以在小程序内部进行意见反馈。</view>
+    <view class='margin-top-sm'>与此同时，如果你觉得这个项目不错的话，或者说存在进一步优化的地方，欢迎你将这个小程序推荐给你的舍友、同学等等，毕竟用户越多，这个小程序才能够发挥更大的用处！٩(๑❛ᴗ❛๑)۶</view>
+    <view class='margin-top-sm'>更多功能敬请期待！</view>
+  </view>
+</view>

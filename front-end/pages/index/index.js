@@ -8,6 +8,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     currentTab: 0,
+    picker: ['望江', '江安', '跨校区'],
     reqList: [{
         id: 1,
         title: "蔡徐坤",
@@ -27,6 +28,21 @@ Page({
         id: 4,
         title: "吴亦凡",
         detail: "you bad oh you bad"
+      },
+      {
+        id: 5,
+        title: "古巨基",
+        detail: "渲染层网络层错误"
+      },
+      {
+        id: 6,
+        title: "周杰伦",
+        detail: "中国标准时间"
+      },
+      {
+        id: 7,
+        title: "mata川",
+        detail: "-8000 -8000"
       }
     ],
     actList: [{
@@ -136,11 +152,22 @@ Page({
     wx.getSystemInfo({
       success: function(res) {
         that.setData({
-          clientHeight: res.windowHeight - 105
+          clientHeight: res.windowHeight - 90
         })
       },
     })
-    console.log(this.data)
+    const currentCampus = wx.getStorageSync('campus')
+    if (currentCampus) {
+      that.setData({
+        currentCampus: currentCampus=='jiangan'?'江安':'望江'
+      })
+      // 已获取到当前用户所在校区，进行请求操作
+
+    } else {
+      that.setData({
+        modalName: 'RadioModal'
+      })
+    }
   },
   onShow: function() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -157,14 +184,37 @@ Page({
       hasUserInfo: true
     })
   },
+
+  setCampus(e) {
+    wx.setStorageSync('campus', e.currentTarget.dataset.campus)
+    this.setData({
+      modalName: null,
+      currentCampus: e.currentTarget.dataset.campus=='jiangan'?'江安':'望江'
+    })
+  },
+
+  PickerChange(e) {
+    console.log(e);
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
   checkReqDetail: function(e) {
     wx.navigateTo({
-      url: '../detail/detail?type=req&id=' + e.currentTarget.dataset.id,
+      url: `../detail/detail?type=req&id=${e.currentTarget.dataset.id}`,
     })
+    app.setVisitCount(e)
   },
   checkActDetail: function(e) {
     wx.navigateTo({
-      url: '../detail/detail?type=act&id=' + e.currentTarget.dataset.id,
+      url: `../detail/detail?type=act&id=${e.currentTarget.dataset.id}`,
+    })
+    app.setVisitCount(e)
+  },
+  checkGoodsDetail: function(e) {
+    wx.navigateTo({
+      url: `../goods/goods?id=${e.currentTarget.dataset.id}`,
     })
   }
 })

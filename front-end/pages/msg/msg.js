@@ -6,6 +6,7 @@ Page({
    */
   data: {
     currentTab: 0,
+    toLast: 'note0',
     msgList: [{
         id: 2,
         name: '李耀星',
@@ -77,8 +78,9 @@ Page({
     const that = this;
     wx.getSystemInfo({
       success: function(res) {
+        // 设置页面滑动内容占据的高度（即减去顶部tab以及底部tab）
         that.setData({
-          clientHeight: res.windowHeight - 105
+          clientHeight: res.windowHeight - 90
         })
       },
     })
@@ -137,6 +139,7 @@ Page({
 
   },
 
+  // 点击改变视图
   switchTab: function(e) {
     // console.log(e.target.dataset);
     // 判断当前tab与触发事件的点击tab是否相同，若相同则不进行data层的修改
@@ -144,25 +147,33 @@ Page({
       return false;
     } else {
       this.setData({
-        modalName: null,
         currentTab: e.target.dataset.current
       })
     }
   },
+  // 滑动改变视图
   swiperChange: function(e) {
     this.setData({
       currentTab: e.detail.current
     })
+    // 判断是否处于通知页面，是则将页面位置滑动到底部，通过scroll-into-view进行控制
+    if (e.detail.current == 1) {
+      this.setData({
+        toLast: `note${this.data.noteList.length}`
+      })
+    }
   },
+  // 查看聊天记录
   checkChatRecord: function(e) {
     console.log(e.currentTarget);
     wx.navigateTo({
-      url: '../chat/chat?id=' + e.currentTarget.dataset.index,
+      url: `../chat/chat?id=${e.currentTarget.dataset.index}`,
     })
   },
+  // 查看通知具体消息
   checkNoteDetail: function(e) {
     wx.navigateTo({
-      url: '../detail/detail?type=' + e.currentTarget.dataset.type + '&id=' + e.currentTarget.dataset.id,
+      url: `../detail/detail?type=${e.currentTarget.dataset.type}&id=${e.currentTarget.dataset.id}`,
     })
-  }
+  },
 })

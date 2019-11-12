@@ -10,24 +10,27 @@
     <swiper-item>
       <scroll-view scroll-y='true' style="height: {{clientHeight?clientHeight+'px':'auto'}}">
         <view class="swiper-item">
-          <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
-            <swiper-item>
-              <view class="ad-swiper-item">广告位招租</view>
-            </swiper-item>
-            <swiper-item>
-              <view class="ad-swiper-item">广告位招租</view>
-            </swiper-item>
-            <swiper-item>
+          <swiper class="ad-swiper shadow-blur bg-red bg-img margin" indicator-dots="true" autoplay="true" interval="3000">
+            <swiper-item wx:for="{{3}}" wx:key>
               <view class="ad-swiper-item">广告位招租</view>
             </swiper-item>
           </swiper>
-          <view class="content body">
-            <view class="select-header">
-              <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
-              <button class="cu-btn round line-red">搜索</button>
+          <view class="text-grey bg-white shadow-warp padding-lr">
+            <view class="cu-form-group">
+              <view class="margin-right">
+                <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+                  <view class="picker">
+                    {{index?picker[index]:currentCampus}}
+                  </view>
+                </picker>
+              </view>
+              <input class="margin-left" placeholder="搜索"></input>
+              <text class="cuIcon-search text-cyan"></text>
             </view>
+          </view>
+          <view class="content margin">
             <view class="cu-list menu-avatar">
-              <view class="cu-item" wx:for="{{reqList}}" wx:key bindtap="checkReqDetail" data-id="{{item.id}}">
+              <view class="cu-item" wx:for="{{reqList}}" wx:key bindtap="checkReqDetail" data-id="{{item.id}}" data-type="req">
                 <image class="cu-avatar round lg" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
                 <view class="content">
                   <view class="text-grey">{{item.title}}</view>
@@ -47,24 +50,27 @@
     <swiper-item>
       <scroll-view scroll-y='true'>
         <view class="swiper-item">
-          <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
-            <swiper-item>
-              <view class="ad-swiper-item">广告位招租</view>
-            </swiper-item>
-            <swiper-item>
-              <view class="ad-swiper-item">广告位招租</view>
-            </swiper-item>
-            <swiper-item>
+          <swiper class="ad-swiper shadow-blur bg-red bg-img margin" indicator-dots="true" autoplay="true" interval="3000">
+            <swiper-item wx:for="{{3}}" wx:key>
               <view class="ad-swiper-item">广告位招租</view>
             </swiper-item>
           </swiper>
-          <view class="content body">
-            <view class="select-header">
-              <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
-              <button class="cu-btn round line-red">搜索</button>
+          <view class="text-grey bg-white shadow-warp padding-lr">
+            <view class="cu-form-group">
+              <view class="margin-right">
+                <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+                  <view class="picker">
+                    {{index?picker[index]:currentCampus}}
+                  </view>
+                </picker>
+              </view>
+              <input class="margin-left" placeholder="搜索"></input>
+              <text class="cuIcon-search text-cyan"></text>
             </view>
+          </view>
+          <view class="content margin">
             <view class="cu-list menu-avatar">
-              <view class="cu-item" wx:for="{{actList}}" wx:key bindtap="checkActDetail" data-id="{{item.id}}">
+              <view class="cu-item" wx:for="{{actList}}" wx:key bindtap="checkActDetail" data-id="{{item.id}}" data-type="act">
                 <image class="cu-avatar round lg" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
                 <view class="content">
                   <view class="text-grey">{{item.title}}</view>
@@ -84,25 +90,28 @@
     <swiper-item>
       <scroll-view scroll-y='true'>
         <view class="swiper-item">
-          <swiper class="ad-swiper body shadow-blur bg-red margin-top bg-img" indicator-dots="true" autoplay="true" interval="3000">
-            <swiper-item>
-              <view class="ad-swiper-item">广告位招租</view>
-            </swiper-item>
-            <swiper-item>
-              <view class="ad-swiper-item">广告位招租</view>
-            </swiper-item>
-            <swiper-item>
+          <swiper class="ad-swiper margin shadow-blur bg-red bg-img" indicator-dots="true" autoplay="true" interval="3000">
+            <swiper-item wx:for="{{3}}" wx:key>
               <view class="ad-swiper-item">广告位招租</view>
             </swiper-item>
           </swiper>
-          <view class="content body">
-            <view class="select-header">
-              <input class="search-input" placeholder="搜索" type="text" confirm-type="search" maxlength="10" />
-              <button class="cu-btn round line-red">搜索</button>
+          <view class="text-grey bg-white shadow-warp padding-lr">
+            <view class="cu-form-group">
+              <view class="margin-right">
+                <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+                  <view class="picker">
+                    {{index?picker[index]:currentCampus}}
+                  </view>
+                </picker>
+              </view>
+              <input class="margin-left" placeholder="搜索"></input>
+              <text class="cuIcon-search text-cyan"></text>
             </view>
+          </view>
+          <view class="content margin">
             <view class="grid col-2">
-              <view wx:for="{{goodsList}}" wx:key>
-                <view class="goods-item margin-sm">
+              <view wx:for="{{goodsList}}" wx:key bindtap="checkGoodsDetail" data-id="{{item.id}}">
+                <view class="goods-item margin-xs">
                   <image class="goods-img padding-0" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
                   <view class="goods-info text-df padding-lr-xs">
                     {{item.title}}
@@ -119,4 +128,25 @@
       </scroll-view>
     </swiper-item>
   </swiper>
+  <view class="cu-modal {{modalName=='RadioModal'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="margin-sm text-lg">请选择所在校区</view>
+      <radio-group class="block">
+        <view class="cu-list menu text-left">
+          <view class="cu-item" bindtap="setCampus" data-campus="jiangan">
+            <label class="flex justify-between align-center flex-sub">
+              <view class="flex-sub">江安校区</view>
+              <radio class="round"></radio>
+            </label>
+          </view>
+          <view class="cu-item" bindtap="setCampus" data-campus="wangjiang">
+            <label class="flex justify-between align-center flex-sub">
+              <view class="flex-sub">望江校区</view>
+              <radio class="round"></radio>
+            </label>
+          </view>
+        </view>
+      </radio-group>
+    </view>
+  </view>
 </view>

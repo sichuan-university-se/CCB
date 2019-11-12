@@ -15,7 +15,7 @@ swiper-item {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  box-shadow: 0 0 2px 0 #7a7070;
+  box-shadow: 0 0 10rpx 0 #7a7070;
   color: #7a7070;
   background-color: #fff;
   z-index: 10;
@@ -34,12 +34,7 @@ swiper-item {
 
 .swiper {
   width: 100%;
-  margin-bottom: 60px;
-}
-
-.body {
-  width: 690rpx;
-  margin: 30rpx;
+  margin-bottom: 48px;
 }
 
 .ad-swiper {
@@ -50,19 +45,6 @@ swiper-item {
 .ad-swiper-item {
   text-align: center;
   line-height: 100px;
-}
-
-.select-header {
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  display: flex;
-}
-
-.search-input {
-  border: 1px solid #7a7070;
-  height: 40px;
-  flex: 2 0 auto;
 }
 
 .goods-item {

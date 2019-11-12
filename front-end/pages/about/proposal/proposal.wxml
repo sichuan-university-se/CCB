@@ -1,0 +1,15 @@
+<!--pages/about/proposal/proposal.wxml-->
+
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>意见反馈</view>
+  <view class='text-content'>
+    <view>Hi！同学你好~ 欢迎使用川川帮！我们在这里会收集各个同学关于该小程序的建议，并在后期进行改善，所以你的建议十分关键！</view>
+    <view class="margin-top-sm">
+      <textarea class="solid padding-xs" maxlength="-1" bindinput="textareaInput" placeholder="请输入您的建议！" value="{{textareaValue}}"></textarea>
+      <view class="cu-form-group">
+        <button class="cu-btn shadow" bindtap="clearProposal">清空</button>
+        <button class="cu-btn bg-green shadow" bindtap="submitProposal">提交</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -10,7 +10,10 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    visitNum: 0,
+    collectNum: 0,
+    historyNum: 0
   },
 
   /**
@@ -43,8 +46,9 @@ Page({
         }
       })
     }
+
   },
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -66,6 +70,16 @@ Page({
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 2
+      })
+    }
+    const visitCount = wx.getStorageSync('visitCount');
+    if (visitCount) {
+      this.setData({
+        visitNum: visitCount
+      })
+    } else {
+      this.setData({
+        visitNum: 0
       })
     }
   },
@@ -103,5 +117,22 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  CopyLink(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.link,
+      success: res => {
+        wx.showToast({
+          title: '已复制',
+          duration: 1000,
+        })
+      }
+    })
+  },
+  showQrcode() {
+    wx.previewImage({
+      urls: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573192480035&di=efcd66c748340bbfcdc7cd12be5380a3&imgtype=0&src=http%3A%2F%2Fpic2.orsoon.com%2F2017%2F0721%2F20170721021629929.png'],
+      current: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573192480035&di=efcd66c748340bbfcdc7cd12be5380a3&imgtype=0&src=http%3A%2F%2Fpic2.orsoon.com%2F2017%2F0721%2F20170721021629929.png'
+    })
   }
 })

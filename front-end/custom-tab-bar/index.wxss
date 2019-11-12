@@ -21,7 +21,6 @@
   transform: scaleY(0.5);
 }
 
-
 .release-img {
   position: fixed;
   bottom: 10rpx;

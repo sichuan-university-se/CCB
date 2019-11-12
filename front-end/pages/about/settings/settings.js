@@ -1,4 +1,4 @@
-// pages/goods/goods.js
+// pages/about/settings/settings.js
 Page({
 
   /**
@@ -12,9 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const pages = getCurrentPages();
-    const currentPage = pages[pages.length - 1];
-    console.log(currentPage.options);
+
   },
 
   /**
@@ -64,5 +62,39 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  // 获取联系邮箱
+  CopyEmail(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.email,
+      success: res => {
+        wx.showToast({
+          title: '已复制邮箱地址',
+          duration: 1000,
+        })
+      }
+    })
+  },
+
+  // 清除缓存
+  clearStorage() {
+    const that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认要清楚缓存吗？',
+      success(res) {
+        if (res.confirm) {
+          wx.clearStorage({
+            success: res => {
+              wx.showToast({
+                title: '成功清除',
+                duration: 1000,
+              })
+            }
+          })
+        }
+      }
+    })
   }
 })

@@ -6,7 +6,11 @@
     "pages/logs/logs",
     "pages/detail/detail",
     "pages/chat/chat",
-    "pages/goods/goods"
+    "pages/goods/goods",
+    "pages/about/about/about",
+    "pages/about/auth/auth",
+    "pages/about/proposal/proposal",
+    "pages/about/settings/settings"
   ],
   "window": {
     "backgroundTextStyle": "dark",
