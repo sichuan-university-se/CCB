@@ -78,9 +78,9 @@ Page({
     const that = this;
     wx.getSystemInfo({
       success: function(res) {
-        // 设置页面滑动内容占据的高度（即减去顶部tab以及底部tab）
+        // 设置页面滑动内容占据的高度（即减去顶部tab）
         that.setData({
-          clientHeight: res.windowHeight - 90
+          clientHeight: res.windowHeight - 40
         })
       },
     })

@@ -151,8 +151,9 @@ Page({
     const that = this;
     wx.getSystemInfo({
       success: function(res) {
+        console.log(res)
         that.setData({
-          clientHeight: res.windowHeight - 90
+          clientHeight: res.windowHeight - 40
         })
       },
     })
@@ -168,6 +169,19 @@ Page({
         modalName: 'RadioModal'
       })
     }
+
+    wx.request({
+      url: 'https://www.easy-mock.com/mock/5dcf67d47bb8937ba86e28f3/example/test',
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+      },
+       fail(res) {
+         console.log(res)
+       }
+    })
   },
   onShow: function() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {

@@ -2,11 +2,11 @@
 
 1. 获取所有需求内容 getReqList (post)
 
-2. 获取所有活动组队内容 getActList (post)
+2. 获取所有活动组队内容 getActList (get)
 
-3. 获取所有商品列表 getGoodsList (post)
+3. 获取所有商品列表 getGoodsList (get)
 
-4. 查看商品详情 checkGoodsDetail (post)
+4. 查看详情 checkGoodsDetail (get) 序列化传递参数id
 
 5. 获取顶部广告(热点)内容 getTopItem (get)
 
@@ -20,6 +20,10 @@
 
 10. 获取聊天对象信息 getFriendInfo (post)
 
-11. 提交身份验证(包括修改个人信息) (post)
+11. 提交身份验证(包括修改个人信息) submitIdCheck (post)
 
-12. 获取个人历史记录(包括发布、接取以及买卖) (post)
+12. 获取个人历史记录(包括发布、接取以及买卖) getHistory (get)
+
+13. 添加内容至收藏 addItemLike (post)
+
+14. 查看收藏内容 checkLikeList (get)
