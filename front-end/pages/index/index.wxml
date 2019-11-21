@@ -18,9 +18,9 @@
           <view class="text-grey bg-white shadow-warp padding-lr">
             <view class="cu-form-group">
               <view class="margin-right">
-                <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+                <picker bindchange="campusChange" value="{{campusIndex}}" range="{{campusPicker}}">
                   <view class="picker">
-                    {{index?picker[index]:currentCampus}}
+                    {{campusIndex?campusPicker[campusIndex]:currentCampus}}
                   </view>
                 </picker>
               </view>
@@ -149,4 +149,10 @@
       </radio-group>
     </view>
   </view>
+
+  <picker range="{{reqPicker}}" range-key="value" value="reqIndex" bindchange="releaseReq">
+    <view class="release-btn picker">
+      <image src="/assets/release.png" mode="aspectFit" class="release-img"></image>
+    </view>
+  </picker>
 </view>

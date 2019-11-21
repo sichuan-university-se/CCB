@@ -8,7 +8,20 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     currentTab: 0,
-    picker: ['望江', '江安', '跨校区'],
+    campusPicker: ['望江', '江安', '跨校区'],
+    reqPicker: ['发布需求', '组队求友', '闲置出手'],
+    reqPicker: [{
+      value: '发布需求',
+      type: 'req'
+    },
+    {
+      value: '组队求友',
+      type: 'act'
+    },
+    {
+      value: '闲置出手',
+      type: 'goods'
+    }],
     reqList: [{
         id: 1,
         title: "蔡徐坤",
@@ -207,10 +220,18 @@ Page({
     })
   },
 
-  PickerChange(e) {
+  campusChange(e) {
     console.log(e);
     this.setData({
-      index: e.detail.value
+      campusIndex: e.detail.value
+    })
+  },
+
+  releaseReq(e) {
+    console.log(e);
+    const releaseType = this.data.reqPicker[e.detail.value].type;
+    wx.navigateTo({
+      url: `../release/release?type=${releaseType}`,
     })
   },
 

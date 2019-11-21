@@ -60,3 +60,16 @@ swiper-item {
 .goods-price {
   float: right;
 }
+
+.release-btn {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 40px;
+  right: 30rpx;
+}
+
+.release-img {
+  width: 50px;
+  height: 50px;
+}

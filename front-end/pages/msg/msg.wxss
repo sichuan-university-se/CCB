@@ -14,7 +14,7 @@
   box-shadow: 0 0 10rpx 0 #7a7070;
   color: #7a7070;
   background-color: #fff;
-  z-index: 20;
+  z-index: 10;
 }
 
 .tab-item {
