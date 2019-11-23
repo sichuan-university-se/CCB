@@ -1,0 +1,7 @@
+Flask == 1.1.1
+Flask-Migrate
+Flask-Script
+Flask-SQLAlchemy
+mysql-connector
+numpy
+SQLAlchemy
