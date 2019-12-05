@@ -1,1 +1,5 @@
 /* pages/release/release.wxss */
+
+.hide {
+  display: none
+}

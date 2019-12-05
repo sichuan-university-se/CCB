@@ -17,10 +17,8 @@
     <view class="cu-item text-content margin-lr">
       {{reqDetail.detail}}
     </view>
-    <!-- <view class="bg-img only-img" style="background-image:url({{reqDetail.image}});"> -->
     <view class="image padding-lr">
       <image src="/assets/image/test.png" mode="aspectFill"></image>
-      <!-- </view> -->
     </view>
     <view class="text-gray text-sm text-right padding">
       <text class="cuIcon-attentionfill margin-lr-xs"></text> 10

@@ -1,1 +1,8 @@
 /* pages/goods/goods.wxss */
+
+.goods-tabbar {
+  position: fixed;
+  height: 55px;
+  width: 100%;
+  bottom: 0;
+}

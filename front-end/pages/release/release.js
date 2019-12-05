@@ -1,3 +1,5 @@
+const request = require('../../utils/request.js')
+
 // pages/release/release.js
 Page({
 
@@ -5,13 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: {
+    total: {
       req: '发布需求',
       act: '组队求友',
       goods: '闲置出手'
     },
+    picker: ['望江', '江安', '跨校区'],
+    index: null,
     imgList: [],
-    textareaValue: ''
+    params: {}
   },
 
   /**
@@ -22,7 +26,10 @@ Page({
     const currentPage = pages[pages.length - 1];
     console.log(currentPage.options);
     this.setData({
-      type: currentPage.options.type
+      type: currentPage.options.type,
+      params: {
+        type: currentPage.options.type
+      }
     })
   },
 
@@ -81,6 +88,7 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
+        console.log(res)
         if (this.data.imgList.length != 0) {
           this.setData({
             imgList: this.data.imgList.concat(res.tempFilePaths)
@@ -115,9 +123,48 @@ Page({
       }
     })
   },
-  textareaInput(e) {
+  titleInput(e) {
     this.setData({
-      textareaValue: e.detail.value
+      params: { ...this.data.params,
+        title: e.detail.value
+      }
     })
   },
+  textareaInput(e) {
+    this.setData({
+      params: { ...this.data.params,
+        detail: e.detail.value
+      }
+    })
+  },
+  priceInput(e) {
+    this.setData({
+      params: { ...this.data.params,
+        price: e.detail.value
+      }
+    })
+  },
+  changeCampus(e) {
+    this.setData({
+      index: e.detail.value,
+      params: { ...this.data.params,
+        campus: e.detail.value
+      }
+    })
+  },
+  handleFormSubmit(e) {
+    // 收集表单数据，并进行提交
+    const params = this.data.params;
+    console.log(this.data)
+    request.postData('/releaseItem', params).then(res => {
+      console.log(res)
+      wx.showToast({
+        title: '发布成功',
+        duration: 1000
+      })
+      wx.switchTab({
+        url: '../index/index'
+      })
+    })
+  }
 })

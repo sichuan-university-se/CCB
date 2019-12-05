@@ -1,13 +1,25 @@
 <!--pages/release/release.wxml-->
 
 <view class='margin bg-white radius shadow-lg padding-top'>
-  <view class='text-center margin-bottom text-lg  text-grey'>{{title[type]}}</view>
+  <view class='text-center margin-bottom text-lg  text-grey'>{{total[type]}}</view>
   <view class="cu-form-group solid-bottom">
     <view class="title">标题</view>
-    <input placeholder="请输入标题"></input>
+    <input placeholder="请输入标题" bindinput="titleInput"></input>
   </view>
   <view class="cu-form-group solid-bottom">
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaInput" placeholder="请输入详细描述"></textarea>
+    <textarea maxlength="-1" bindinput="textareaInput" placeholder="请输入详细描述"></textarea>
+  </view>
+  <view class="cu-form-group solid-bottom {{ type=='act' ? 'hide' : '' }}">
+    <view class="title">价格</view>
+    <input placeholder="请输入价格" type="number" bindinput="priceInput"></input>
+  </view>
+  <view class="cu-form-group solid-bottom {{ type=='req' ? '' : 'hide'}}">
+    <view class="title">校区</view>
+    <picker bindchange="changeCampus" value="{{index}}" range="{{picker}}">
+      <view class="picker">
+        {{index?picker[index]:'点击更改校区'}}
+      </view>
+    </picker>
   </view>
   <view class="cu-form-group solid-bottom">
     <view class="title">要求验证</view>
@@ -15,13 +27,13 @@
   </view>
   <view class="cu-bar">
     <view class="action">
-      图片上传
+      上传图片
     </view>
     <view class="action">
       {{imgList.length}}/4
     </view>
   </view>
-  <view class="cu-form-group">
+  <view class="cu-form-group solid-bottom">
     <view class="grid col-4 grid-square flex-sub">
       <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
         <image src='{{imgList[index]}}' mode='aspectFill'></image>
@@ -33,5 +45,8 @@
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
+  </view>
+  <view class="cu-form-group" style="justify-content: flex-end">
+    <button class="cu-btn bg-olive round shadow" bindtap="handleFormSubmit">发布</button>
   </view>
 </view>

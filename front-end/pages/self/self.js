@@ -12,14 +12,15 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     visitNum: 0,
-    collectNum: 0,
-    historyNum: 0
+    likeNum: 0,
+    historyNum: 0,
+    refundNum: 100
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -46,78 +47,20 @@ Page({
         }
       })
     }
-
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 2
-      })
-    }
     const visitCount = wx.getStorageSync('visitCount');
-    if (visitCount) {
-      this.setData({
-        visitNum: visitCount
-      })
-    } else {
-      this.setData({
-        visitNum: 0
-      })
-    }
+    const likeList = wx.getStorageSync('likeList');
+    this.setData({
+      visitNum: visitCount ? visitCount : 0,
+      likeNum: likeList ? likeList.length : 0
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
   CopyLink(e) {
     wx.setClipboardData({
       data: e.currentTarget.dataset.link,
@@ -129,6 +72,7 @@ Page({
       }
     })
   },
+
   showQrcode() {
     wx.previewImage({
       urls: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573192480035&di=efcd66c748340bbfcdc7cd12be5380a3&imgtype=0&src=http%3A%2F%2Fpic2.orsoon.com%2F2017%2F0721%2F20170721021629929.png'],

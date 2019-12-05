@@ -1,2 +1,34 @@
 <!--pages/goods/goods.wxml-->
-<text>pages/goods/goods.wxml</text>
+<view class="cu-card case bg-white" style="margin-bottom: 55px">
+  <view class="cu-list menu-avatar">
+    <view class="text-center text-lg padding-sm">{{title}}</view>
+    <view class="cu-item solids-top">
+      <image class="cu-avatar round lg" src="{{avatar}}" mode="aspectFill"></image>
+      <view class="content flex-sub">
+        <view>{{name}}</view>
+        <view class="text-gray text-sm flex justify-between">
+          {{time}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="text-content padding-sm">
+    {{detail}}
+  </view>
+  <view class="bg-white">
+    <view class="image margin-lr-sm margin-bottom-sm" wx:for="{{imgList}}" wx:key>
+      <image class="radius" src="{{item}}" mode="widthFix"></image>
+    </view>
+  </view>
+</view>
+<view class="cu-bar bg-white tabbar border shop goods-tabbar">
+  <view class="action">
+    <view class="cuIcon-mark"></view> 联系
+  </view>
+  <view class="action" bindtap="switchLike">
+    <view class="{{liked ? 'cuIcon-likefill text-red' : 'cuIcon-like'}}"></view> 收藏
+  </view>
+  <view class="btn-group" style="justify-content: flex-end; margin: 60rpx">
+    <button class="cu-btn bg-red round shadow-blur">有意购买</button>
+  </view>
+</view>

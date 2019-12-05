@@ -1,24 +1,27 @@
 <!--pages/chat/chat.wxml-->
 
 <view class="cu-chat">
-  <view class="cu-item self">
-    <view class="main">
-      <view class="content bg-green shadow">
-        <text>喵喵喵！喵喵喵！喵喵喵！喵喵！喵喵！！喵！喵喵喵！</text>
+  <view class="cu-item {{item.speaker=='self'?'self':''}}" wx:for="{{msgList}}" wx:key>
+    <block wx:if="{{item.speaker=='self'}}">
+      <view class="main">
+        <image wx:if="{{item.image}}" src="{{item.image}}" class="radius" mode="widthFix"></image>
+        <view wx:else class="content {{item.speaker=='self'?'bg-green':''}} shadow">
+          <text>{{item.content}}</text>
+        </view>
       </view>
-    </view>
-    <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
-    <view class="date">2018年3月23日 13:23</view>
-  </view>
-  <view class="cu-info round">对方撤回一条消息!</view>
-  <view class="cu-item">
-    <image class="cu-avatar round lg" src="/assets/image/gakki1.jpg" mode="aspectFill"></image>
-    <view class="main">
-      <view class="content shadow">
-        <text>喵喵喵！喵喵喵！</text>
+      <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
+      <view class="date">{{item.time}}</view>
+    </block>
+    <block wx:else>
+      <image class="cu-avatar round lg" src="/assets/image/gakki1.jpg" mode="aspectFill"></image>
+      <view class="main">
+        <image wx:if="{{item.image}}" src="{{item.image}}" class="radius" mode="widthFix"></image>
+        <view wx:else class="content shadow">
+          <text>{{item.content}}</text>
+        </view>
       </view>
-    </view>
-    <view class="date "> 13:23</view>
+      <view class="date "> {{item.time}}</view>
+    </block>
   </view>
   <view class="cu-item self">
     <view class="main">
@@ -26,43 +29,6 @@
     </view>
     <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
     <view class="date"> 13:23</view>
-  </view>
-  <view class="cu-item self">
-    <view class="main">
-      <view class="action text-bold text-grey">
-        3"
-      </view>
-      <view class="content shadow">
-        <text class="cuIcon-sound text-xxl padding-right-xl"> </text>
-      </view>
-    </view>
-    <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
-    <view class="date">13:23</view>
-  </view>
-  <view class="cu-item self">
-    <view class="main">
-      <view class="action">
-        <text class="cuIcon-locationfill text-orange text-xxl"></text>
-      </view>
-      <view class="content shadow">
-        喵星球，喵喵市
-      </view>
-    </view>
-    <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
-    <view class="date">13:23</view>
-  </view>
-  <view class="cu-item">
-    <image class="cu-avatar round lg" src="/assets/image/gakki1.jpg" mode="aspectFill"></image>
-    <view class="main">
-      <view class="content shadow">
-        @#$^&**
-      </view>
-      <view class="action text-grey">
-        <text class="cuIcon-warnfill text-red text-xxl"></text>
-        <text class="text-sm margin-left-sm">翻译错误</text>
-      </view>
-    </view>
-    <view class="date">13:23</view>
   </view>
 </view>
 
@@ -74,5 +40,5 @@
   <view class="action">
     <text class="cuIcon-emojifill text-grey"></text>
   </view>
-  <button class="cu-btn bg-green shadow">发送</button>
+  <button class="cu-btn bg-green shadow" bindtap="sendMsg">发送</button>
 </view>

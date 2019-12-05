@@ -1,18 +1,12 @@
 //app.js
 App({
-  onLaunch: function() {
+  onLaunch: function () {
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        console.log(res)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -37,8 +31,32 @@ App({
   globalData: {
     userInfo: null
   },
+  ccblogin: function () {
+      const promisify = require('./utils/promisify.js')
+      // 利用封装得到promise对象，处理login得到的参数
+      const login = promisify(wx.login)
+      const request = promisify(wx.request)
+
+      // 登录
+      return login().then(res => {
+        wx.setStorageSync('code', res.code)
+        return res.code
+      }).then(res => {
+        return request({
+          url: `http://192.168.31.66:5000/wx/login?code=${res}`
+        })
+      }).then(res => {
+        console.log(res)
+        // 获取sessionid，并存入cookie
+        const sessionid = res.header['Set-Cookie'].split(";")[0]
+        wx.setStorageSync('cookies', sessionid)
+        wx.setStorageSync('openid', res.data.openid)
+        wx.setStorageSync('exists', res.data.exists)
+        return res.data.exists
+      })
+  },
   // 利用缓存设置用户浏览足迹
-  setVisitCount: function(e) {
+  setVisitCount: function (e) {
     // 获取当前需求id
     const onId = e.currentTarget.dataset.id;
 
@@ -50,7 +68,6 @@ App({
 
     // 获取当前存储id列表
     const currentIdList = wx.getStorageSync(`${visitType}IdList`);
-    console.log(currentIdList);
 
     // 如果已存在访问数，则进行加一以及添加当前id到对应列表中
     if (currentVisitCount) {

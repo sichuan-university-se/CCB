@@ -41,19 +41,39 @@ swiper-item {
   border-radius: 10px;
 }
 
-.ad-swiper-item {
-  text-align: center;
-  line-height: 100px;
+.cu-list {
+  border-radius: 20rpx;
+}
+
+.cu-list.menu-avatar>.cu-item>.act-avatar {
+  position: absolute;
+  right: 30rpx;
+  width: 96rpx;
+  height: 96rpx;
+  font-size: 2em;
+}
+
+.cu-list.menu-avatar>.cu-item>.act-content {
+  position: absolute;
+  left: 40rpx;
+  width: 500rpx;
+  line-height: 1.6em;
+}
+
+.cu-list.menu-avatar>.cu-item>.act-time {
+  position: absolute;
+  right: 160rpx;
+  bottom: 26rpx;
 }
 
 .goods-item {
   border: 1px solid #fff;
-  border-radius: 20rpx;
+  border-radius: 15rpx;
   overflow: hidden;
 }
 
 .goods-item .goods-img {
-  height: 350rpx;
+  /* height: 350rpx; */
   margin-bottom: 10rpx;
 }
 

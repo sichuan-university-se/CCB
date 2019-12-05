@@ -3,11 +3,8 @@
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg text-grey">
     <view class="userinfo">
-      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname text-xl margin-top-xs text-bold">{{userInfo.nickName}}</text>
-      </block>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname text-xl margin-top-xs text-bold">{{userInfo.nickName}}</text>
     </view>
     <view class="text-xl margin-top-sm text-bold">川川帮
       <text class="text-df text-bold">v1.0.0</text>
@@ -20,14 +17,19 @@
         <text class="cuIcon-footprint text-yellow"></text> 足迹</view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-red">{{collectNum}}</view>
+      <view class="text-xxl text-red">{{likeNum}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-favor text-yellow"></text> 收藏</view>
     </view>
-    <view class="flex flex-sub flex-direction">
+    <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-green">{{historyNum}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-calendar text-yellow"></text> 记录</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-cyan">{{refundNum}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-refund text-yellow"></text> 余额</view>
     </view>
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">

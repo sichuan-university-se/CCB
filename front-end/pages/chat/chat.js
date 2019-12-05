@@ -5,7 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    InputBottom: 0
+    InputBottom: 0,
+    msgList: [
+      {
+        speaker: 'self',
+        content: '成熟的基本V点击编辑',
+        time: '13:23',
+        image: ''
+      },
+      {
+        speaker: 'peer',
+        content: '大哦家里我的',
+        time: '14:57',
+        image: ''
+      },
+      {
+        sperker: 'self',
+        content: '',
+        time: '18:00',
+        image: '/assets/image/gakki0.jpg'
+      }
+    ]
   },
 
   /**
@@ -75,5 +95,9 @@ Page({
     this.setData({
       InputBottom: 0
     })
+  },
+  sendMsg(e) {
+    // 发送聊天内容
+    console.log(e)
   }
 })
