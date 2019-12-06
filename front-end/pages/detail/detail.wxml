@@ -1,29 +1,30 @@
-<!--pages/detail/detail.wxml-->
-
+<!-- pages/detail/detail.wxml -->
 <view class="cu-card case">
   <view class="cu-item shadow">
     <view class="cu-list menu-avatar">
-      <view class="text-center text-lg padding-sm">{{reqDetail.title}}</view>
-      <view class="cu-item solids-top">
+      <view class="text-center text-lg padding-sm solids-bottom">
+        {{reqDetail.title}}
+        <text class="text-yellow text-lg {{liked ? 'cuIcon-favorfill' : 'cuIcon-favor'}}" style="float: right" bindtap="switchLike"></text>
+      </view>
+      <view class="cu-item">
         <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
         <view class="content flex-sub">
           <view>{{reqDetail.name}}</view>
-          <view class="text-gray text-sm flex justify-between">
-            {{reqDetail.time}}
-          </view>
+          <view class="text-gray text-sm flex justify-between">{{reqDetail.time}}</view>
         </view>
       </view>
     </view>
-    <view class="cu-item text-content margin-lr">
-      {{reqDetail.detail}}
-    </view>
+    <view class="cu-item text-content margin-lr">{{reqDetail.detail}}</view>
     <view class="image padding-lr">
       <image src="/assets/image/test.png" mode="aspectFill"></image>
     </view>
     <view class="text-gray text-sm text-right padding">
-      <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
-      <text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
-      <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+      <text class="cuIcon-attentionfill margin-lr-xs"></text>
+      10
+      <text class="cuIcon-appreciatefill margin-lr-xs"></text>
+      20
+      <text class="cuIcon-messagefill margin-lr-xs"></text>
+      30
     </view>
   </view>
 </view>

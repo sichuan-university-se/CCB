@@ -120,28 +120,7 @@ Page({
       })
     }
 
-    app.ccblogin().then(res => {
-      console.log(res)
-      // res为是否注册的标识
-      const userInfo = app.globalData.userInfo
-      if (!res) {
-        // 进行注册
-        request.postData('/signup', { user: JSON.stringify(userInfo) }).then(res => {
-          console.log(res)
-          wx.setStorageSync('exists', 1)
-
-          // 发送请求获取内容
-          getReqList()
-          getTopItem()
-        })
-      } else {
-        getReqList()
-        getTopItem()
-      }
-    }).catch(err => {
-      console.log(err)
-    })
-
+    // 获取需求列表
     const getReqList = () => {
       const campus = wx.getStorageSync('campus') ? '1' : '0'
       request.getData('/getReqList', `&count=10&campus=${campus}`).then(res => {
@@ -152,6 +131,7 @@ Page({
       })
     }
 
+    // 获取顶部广告内容
     const getTopItem = () => {
       request.getData('/getTopItem').then(res => {
         console.log(res)
@@ -160,6 +140,9 @@ Page({
         })
       })
     }
+
+    getReqList();
+    getTopItem();
   },
 
   // 设定所在校区并存入缓存
@@ -196,6 +179,7 @@ Page({
 
   // 查看需求以及活动详情
   checkDetail: function (e) {
+    app.setVisitCount(e)
     wx.navigateTo({
       url: `../detail/detail?type=${e.currentTarget.dataset.type}&id=${e.currentTarget.dataset.id}`,
     })

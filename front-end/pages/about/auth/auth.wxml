@@ -1,2 +1,22 @@
-<!--pages/auth/auth.wxml-->
-<text>此处为身份验证界面，需对用户身份进行验证，如校园卡，学院信息等</text>
+<!-- pages/auth/auth.wxml -->
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class="cu-bar">
+    <view class="action">上传校园卡</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" bindtap="ViewImage" data-url="{{currentImage[0]}}">
+        <image src='{{currentImage[0]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{currentImage.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group" style="justify-content: flex-end">
+    <button class="cu-btn bg-olive round shadow" bindtap="handleAuth">提交</button>
+  </view>
+</view>

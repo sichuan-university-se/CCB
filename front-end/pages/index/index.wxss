@@ -45,7 +45,7 @@ swiper-item {
   border-radius: 20rpx;
 }
 
-.cu-list.menu-avatar>.cu-item>.act-avatar {
+.cu-list.menu-avatar>.cu-item>.rls-avatar {
   position: absolute;
   right: 30rpx;
   width: 96rpx;
@@ -53,14 +53,14 @@ swiper-item {
   font-size: 2em;
 }
 
-.cu-list.menu-avatar>.cu-item>.act-content {
+.cu-list.menu-avatar>.cu-item>.rls-content {
   position: absolute;
   left: 40rpx;
   width: 500rpx;
   line-height: 1.6em;
 }
 
-.cu-list.menu-avatar>.cu-item>.act-time {
+.cu-list.menu-avatar>.cu-item>.rls-time {
   position: absolute;
   right: 160rpx;
   bottom: 26rpx;

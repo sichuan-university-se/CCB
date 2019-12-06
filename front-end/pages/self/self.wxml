@@ -1,12 +1,12 @@
-<!--pages/self/self.wxml-->
-
+<!-- pages/self/self.wxml -->
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg text-grey">
     <view class="userinfo">
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname text-xl margin-top-xs text-bold">{{userInfo.nickName}}</text>
     </view>
-    <view class="text-xl margin-top-sm text-bold">川川帮
+    <view class="text-xl margin-top-sm text-bold">
+      川川帮
       <text class="text-df text-bold">v1.0.0</text>
     </view>
   </view>
@@ -14,22 +14,30 @@
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-blue">{{visitNum}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-footprint text-yellow"></text> 足迹</view>
+        <text class="cuIcon-footprint text-yellow"></text>
+        足迹
+      </view>
     </view>
-    <view class="flex flex-sub flex-direction solid-right">
+    <view class="flex flex-sub flex-direction solid-right" bindtap="checkLikedList">
       <view class="text-xxl text-red">{{likeNum}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-favor text-yellow"></text> 收藏</view>
+        <text class="cuIcon-favor text-yellow"></text>
+        收藏
+      </view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-green">{{historyNum}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-calendar text-yellow"></text> 记录</view>
+        <text class="cuIcon-calendar text-yellow"></text>
+        记录
+      </view>
     </view>
     <view class="flex flex-sub flex-direction">
       <view class="text-xxl text-cyan">{{refundNum}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-refund text-yellow"></text> 余额</view>
+        <text class="cuIcon-refund text-yellow"></text>
+        余额
+      </view>
     </view>
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
@@ -51,7 +59,6 @@
         <text class="text-grey">关于川川帮</text>
       </navigator>
     </view>
-
     <view class="cu-item arrow">
       <view class="content" bindtap="showQrcode">
         <text class="cuIcon-appreciatefill text-red"></text>

@@ -1,11 +1,16 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
   <view class="swiper-tab">
-    <view class="tab-item {{ currentTab == 0 ? 'on' : '' }}" data-current="0" bindtap="switchTab">活动组队</view>
-    <view class="tab-item {{ currentTab == 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">校内需求</view>
-    <view class="tab-item {{ currentTab == 2 ? 'on' : '' }}" data-current="2" bindtap="switchTab">闲置交易</view>
+    <view class="tab-item {{ currentTab == 0 ? 'on' : '' }}" data-current="0" bindtap="switchTab">
+      活动组队
+    </view>
+    <view class="tab-item {{ currentTab == 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">
+      校内需求
+    </view>
+    <view class="tab-item {{ currentTab == 2 ? 'on' : '' }}" data-current="2" bindtap="switchTab">
+      闲置交易
+    </view>
   </view>
-
   <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
     <swiper-item>
       <scroll-view scroll-y='true'>
@@ -31,11 +36,11 @@
           <view class="content margin">
             <view class="cu-list menu-avatar">
               <view class="cu-item solid-bottom" wx:for="{{actList}}" wx:key bindtap="checkDetail" data-id="{{item.id}}" data-type="act">
-                <view class="act-content">
+                <view class="rls-content">
                   <view class="text-lg">{{item.title}}</view>
                 </view>
-                <view class="act-time text-grey text-sm">{{item.time}}</view>
-                <image class="act-avatar" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
+                <view class="rls-time text-grey text-sm">{{item.time}}</view>
+                <image class="rls-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
               </view>
             </view>
           </view>
@@ -65,24 +70,21 @@
           </view>
           <view class="content margin">
             <view class="cu-list menu-avatar">
-              <view class="cu-item" wx:for="{{reqList}}" wx:key bindtap="checkDetail" data-id="{{item.id}}" data-type="req">
-                <image class="cu-avatar round lg" src="/assets/image/gakki{{index}}.jpg" mode="aspectFill"></image>
-                <view class="content">
-                  <view class="text-grey">{{item.title}}</view>
-                  <view class="text-gray text-sm flex">
-                    <text class="text-cut"> {{item.detail}} </text>
-                  </view>
+              <view class="cu-item solid-bottom" wx:for="{{reqList}}" wx:key bindtap="checkDetail" data-id="{{item.id}}" data-type="req">
+                <view class="rls-content">
+                  <view class="text-lg">{{item.title}}</view>
                 </view>
-                <view class="action">
-                  <view class="text-grey text-xs">22:20</view>
+                <view class="rls-time text-grey text-sm">
+                  <text class="text-red">￥{{item.price}}</text>
+                  {{item.time}}
                 </view>
+                <image class="rls-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
               </view>
             </view>
           </view>
         </view>
       </scroll-view>
     </swiper-item>
-
     <swiper-item>
       <scroll-view scroll-y='true'>
         <view class="swiper-item">
@@ -145,7 +147,6 @@
       </radio-group>
     </view>
   </view>
-
   <picker range="{{reqPicker}}" range-key="value" value="reqIndex" bindchange="releaseReq">
     <view class="release-btn picker">
       <image src="/assets/release.png" mode="aspectFit" class="release-img"></image>

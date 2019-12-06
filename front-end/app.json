@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/msg/msg",
     "pages/self/self",
+    "pages/liked/liked",
     "pages/logs/logs",
     "pages/detail/detail",
     "pages/chat/chat",

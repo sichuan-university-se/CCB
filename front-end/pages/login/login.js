@@ -1,4 +1,5 @@
 const app = getApp()
+const request = require('../../utils/request.js')
 
 // pages/login/login.js
 Page({
@@ -15,7 +16,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -42,20 +43,40 @@ Page({
         }
       })
     }
-    wx.switchTab({
-      url: '../index/index'
+    app.ccblogin().then(res => {
+      console.log(res)
+      const userInfo = app.globalData.userInfo
+      if (!res) {
+        request.postData('/signup', { user: JSON.stringify(userInfo) }).then(res => {
+          wx.setStorageSync('exists', 1)
+        })
+      }
+    }).then(() => {
+      wx.switchTab({
+        url: '../index/index'
+      })
     })
   },
 
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-    wx.switchTab({
-      url: '../index/index',
+    app.ccblogin().then(res => {
+      console.log(res)
+      const userInfo = app.globalData.userInfo
+      if (!res) {
+        request.postData('/signup', { user: JSON.stringify(userInfo) }).then(res => {
+          wx.setStorageSync('exists', 1)
+        })
+      }
+    }).then(() => {
+      wx.switchTab({
+        url: '../index/index'
+      })
     })
   }
 })

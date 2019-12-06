@@ -1,11 +1,13 @@
 // pages/auth/auth.js
+const request = require('../../../utils/request.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    currentImage: []
   },
 
   /**
@@ -15,52 +17,56 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  ChooseImage() {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['camera'],
+      success: res => {
+        console.log(res)
+        this.setData({
+          currentImage: res.tempFilePaths
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  ViewImage() {
+    wx.previewImage({
+      urls: this.data.currentImage
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  DelImage() {
+    wx.showModal({
+      title: '图片',
+      content: '确认删除吗？',
+      cancelText: '取消',
+      confirmText: '确认',
+      success: res => {
+        if (res.confirm) {
+          this.setData({
+            currentImage: []
+          })
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handleAuth() {
+    if (this.data.currentImage.length !== 0) {
+      request.uploadImg(this.data.currentImage[0]).then(res => {
+        console.log(JSON.parse(res.data))
+        const img_url = JSON.parse(res.data).url
+        request.postData('/uploadAuthInfo', { img_url: img_url }).then(res => {
+          console.log(res)
+        })
+      }).then(() => {
+        wx.showToast({
+          title: '上传成功',
+          duration: 1000
+        })
+        wx.switchTab({
+          url: '../../self/self'
+        })
+      })
+    }
   }
 })

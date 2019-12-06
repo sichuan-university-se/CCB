@@ -61,6 +61,12 @@ Page({
     })
   },
 
+  checkLikedList(e) {
+    wx.navigateTo({
+      url: '../liked/liked'
+    })
+  },
+
   CopyLink(e) {
     wx.setClipboardData({
       data: e.currentTarget.dataset.link,

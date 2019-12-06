@@ -1,4 +1,6 @@
 // pages/goods/goods.js
+const request = require('../../utils/request.js')
+
 Page({
 
   /**
@@ -46,71 +48,37 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
-
   switchLike(e) {
     if (!this.data.liked) {
       // 如果用户未收藏则写入缓存，以数组形式存储
       const currentLikeList = wx.getStorageSync('likeList') || [];
       currentLikeList.push(this.data.id);
       wx.setStorageSync('likeList', currentLikeList)
+      request.postData('/addtolike', {
+        type: 'item',
+        id: this.data.id
+      }).then(res => {
+        console.log(res)
+        this.setData({
+          liked: true
+        })
+      })
     } else {
       // 反之取消收藏，并更改缓存
       const currentLikeList = wx.getStorageSync('likeList');
       const index = currentLikeList.indexOf(this.data.id);
       currentLikeList.splice(index, 1);
       wx.setStorageSync('likeList', currentLikeList);
+      request.postData('/addtolike', {
+        type: 'item',
+        id: this.data.id,
+        del: 1
+      }).then(res => {
+        console.log(res)
+        this.setData({
+          liked: false
+        })
+      })
     }
-    // 更改图标
-    this.setData({
-      liked: !this.data.liked
-    })
   }
 })
