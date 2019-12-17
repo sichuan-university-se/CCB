@@ -43,18 +43,18 @@ Page({
         }
       })
     }
+
     app.ccblogin().then(res => {
       console.log(res)
       const userInfo = app.globalData.userInfo
-      if (!res) {
+      if (!res && userInfo) {
         request.postData('/signup', { user: JSON.stringify(userInfo) }).then(res => {
           wx.setStorageSync('exists', 1)
+          request.getData('/walletInfo').then(res => {
+            console.log(res)
+          })
         })
       }
-    }).then(() => {
-      wx.switchTab({
-        url: '../index/index'
-      })
     })
   },
 
@@ -65,18 +65,40 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-    app.ccblogin().then(res => {
-      console.log(res)
-      const userInfo = app.globalData.userInfo
-      if (!res) {
-        request.postData('/signup', { user: JSON.stringify(userInfo) }).then(res => {
-          wx.setStorageSync('exists', 1)
-        })
+    const userInfo = e.detail.userInfo
+    const code = wx.getStorageSync('code')
+
+    // 获取授权后进行注册以及激活钱包的请求
+    wx.request({
+      url: `https://www.chiyumao.com/wx/login?code=${code}`,
+      success: res => {
+        if (!res.data.exists) {
+          request.postData('/signup', { user: JSON.stringify(userInfo) }).then(res => {
+            wx.setStorageSync('exists', 1)
+            request.getData('/walletInfo').then(res => {
+              console.log(res)
+            })
+          })
+        }
       }
-    }).then(() => {
-      wx.switchTab({
-        url: '../index/index'
-      })
+    })
+  },
+
+  switchToTab(e) {
+    const code = wx.getStorageSync('code')
+    wx.request({
+      url: `https://www.chiyumao.com/wx/login?code=${code}`,
+      success: res => {
+        if (res.data.cheat) {
+          wx.navigateTo({
+            url: '../cheat/test/test'
+          })
+        } else {
+          wx.switchTab({
+            url: '../index/index'
+          })
+        }
+      }
     })
   }
 })

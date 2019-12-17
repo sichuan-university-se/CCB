@@ -1,0 +1,27 @@
+<!-- pages/testnews/testnews.wxml -->
+<view class="cu-card case" style="margin-bottom: 55px">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      <view class="text-center text-lg padding-sm solids-bottom">{{currNews.name}}</view>
+      <view class="cu-item">
+        <image class="cu-avatar round lg" src="/assets/scu.jpg" mode="aspectFill"></image>
+        <view class="content flex-sub">
+          <view>四川大学</view>
+          <view class="text-gray text-sm flex justify-between">{{currNews.date}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="cu-item text-content margin-lr">{{currNews.detail}}</view>
+    <view class="image padding-lr" wx:if="{{currNews.pics.length > 0}}" wx:for="{{currNews.pics}}" wx:key bindtap="ViewImage">
+      <image class="radius" src="{{item}}" mode="widthFix"></image>
+    </view>
+    <view class="text-gray text-sm text-right padding">
+      <text class="cuIcon-attentionfill margin-lr-xs"></text>
+      10
+      <text class="cuIcon-appreciatefill margin-lr-xs"></text>
+      20
+      <text class="cuIcon-messagefill margin-lr-xs"></text>
+      30
+    </view>
+  </view>
+</view>

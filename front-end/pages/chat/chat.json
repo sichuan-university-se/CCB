@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cu-custom": "/components/cu-custom"
+  }
 }

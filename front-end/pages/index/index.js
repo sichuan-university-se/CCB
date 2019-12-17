@@ -26,26 +26,6 @@ Page({
       id: 1,
       title: "新裤子乐队但是受打击阿邦大市比才到家对方你圣诞节",
       time: "20:00"
-    },
-    {
-      id: 2,
-      title: "刺猬乐队",
-      time: "18:00"
-    },
-    {
-      id: 3,
-      title: "Nirvana",
-      time: "17:56"
-    },
-    {
-      id: 4,
-      title: "Oasis",
-      time: "16:34"
-    },
-    {
-      id: 5,
-      title: "九连真人",
-      time: "16:00"
     }
     ],
     goodsList: [{
@@ -65,18 +45,6 @@ Page({
       title: "计算机专业书",
       price: "60",
       detail: "三本打包价"
-    },
-    {
-      id: 4,
-      title: "airpods二代",
-      price: "1000",
-      detail: "换新款"
-    },
-    {
-      id: 5,
-      title: "kindle",
-      price: "480",
-      detail: "9成新，到货2个月，很少碰，现寻有缘人blablabla"
     }
     ]
   },
@@ -112,7 +80,7 @@ Page({
     const currentCampus = wx.getStorageSync('campus')
     if (currentCampus) {
       that.setData({
-        currentCampus: currentCampus == 'jiangan' ? '江安' : '望江'
+        currentCampus: currentCampus === 'jiangan' ? '江安' : '望江'
       })
     } else {
       that.setData({
@@ -120,29 +88,58 @@ Page({
       })
     }
 
-    // 获取需求列表
-    const getReqList = () => {
-      const campus = wx.getStorageSync('campus') ? '1' : '0'
-      request.getData('/getReqList', `&count=10&campus=${campus}`).then(res => {
-        console.log(res)
-        that.setData({
-          reqList: res.data.list
-        })
-      })
-    }
+    this.getReqList();
+    this.getTopItem();
+  },
 
-    // 获取顶部广告内容
-    const getTopItem = () => {
-      request.getData('/getTopItem').then(res => {
-        console.log(res)
-        that.setData({
-          topImages: res.data.images
-        })
-      })
-    }
+  onShow: function () {
+    this.getReqList()
+    this.getTopItem()
+  },
 
-    getReqList();
-    getTopItem();
+  onPullDownRefresh: function () {
+    this.getReqList()
+    this.getTopItem()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 2000)
+  },
+
+  onReachBottom: function () {
+    console.log('到底啦')
+    const campus = wx.getStorageSync('campus') ? '1' : '0'
+    request.postData('/getReqList', {
+      count: 10, campus: campus,
+      from: this.data.lastId
+    }).then(res => {
+      console.log(res)
+      // this.setData({
+      //   reqList: [ ...this.data.reqList, ...res.data.list],
+      //   lastId: res.data.list[res.data.list.length - 1].id
+      // })
+    })
+  },
+
+  // 获取需求列表
+  getReqList() {
+    const campus = wx.getStorageSync('campus') ? '1' : '0'
+    request.postData('/getReqList', { count: 10, campus: campus }).then(res => {
+      console.log(res)
+      this.setData({
+        reqList: res.data.list,
+        lastId: res.data.list.length == 10 ? res.data.list[res.data.list.length - 1].id : ''
+      })
+    })
+  },
+
+  // 获取顶部广告内容
+  getTopItem() {
+    request.getData('/getTopItem').then(res => {
+      console.log(res)
+      this.setData({
+        topImages: res.data.images
+      })
+    })
   },
 
   // 设定所在校区并存入缓存
@@ -150,7 +147,7 @@ Page({
     wx.setStorageSync('campus', e.currentTarget.dataset.campus)
     this.setData({
       modalName: null,
-      currentCampus: e.currentTarget.dataset.campus == 'jiangan' ? '江安' : '望江'
+      currentCampus: e.currentTarget.dataset.campus === 'jiangan' ? '江安' : '望江'
     })
   },
 

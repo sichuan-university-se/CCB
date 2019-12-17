@@ -1,10 +1,11 @@
-<!--pages/login/login.wxml-->
-
+<!-- pages/login/login.wxml -->
 <view class="userinfo">
-  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取授权 </button>
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+    获取授权
+  </button>
   <block wx:else>
     <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
     <text class="userinfo-nickname text-xl margin-top-xs text-bold">{{userInfo.nickName}}</text>
-    <button>开始使用</button>
+    <button bindtap="switchToTab">开始使用</button>
   </block>
 </view>

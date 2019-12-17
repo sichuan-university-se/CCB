@@ -1,42 +1,34 @@
-<!--pages/chat/chat.wxml-->
-
-<view class="cu-chat">
-  <view class="cu-item {{item.speaker=='self'?'self':''}}" wx:for="{{msgList}}" wx:key>
-    <block wx:if="{{item.speaker=='self'}}">
+<!-- pages/chat/chat.wxml -->
+<cu-custom bgColor="bg-grey light" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{peerInfo.username}}</view>
+</cu-custom>
+<scroll-view class="cu-chat" scroll-y="true" style="height: {{clientHeight?clientHeight+'px':'auto'}}" scroll-into-view="{{tolast}}">
+  <view class="cu-item {{item.speaker==='self'?'self':''}}" wx:for="{{msgList}}" wx:key id="msg{{index+1}}">
+    <block wx:if="{{item.speaker==='self'}}">
       <view class="main">
         <image wx:if="{{item.image}}" src="{{item.image}}" class="radius" mode="widthFix"></image>
-        <view wx:else class="content {{item.speaker=='self'?'bg-green':''}} shadow">
+        <view wx:else class="content {{item.speaker==='self'?'bg-green':''}} shadow">
           <text>{{item.content}}</text>
         </view>
       </view>
-      <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
+      <image class="cu-avatar round lg" src="{{selfInfo.avatar}}" mode="aspectFill"></image>
       <view class="date">{{item.time}}</view>
     </block>
     <block wx:else>
-      <image class="cu-avatar round lg" src="/assets/image/gakki1.jpg" mode="aspectFill"></image>
+      <image class="cu-avatar round lg" src="{{peerInfo.avatar}}" mode="aspectFill"></image>
       <view class="main">
         <image wx:if="{{item.image}}" src="{{item.image}}" class="radius" mode="widthFix"></image>
         <view wx:else class="content shadow">
           <text>{{item.content}}</text>
         </view>
       </view>
-      <view class="date "> {{item.time}}</view>
+      <view class="date ">{{item.time}}</view>
     </block>
   </view>
-  <view class="cu-item self">
-    <view class="main">
-      <image src="/assets/image/test.png" class="radius" mode="widthFix"></image>
-    </view>
-    <image class="cu-avatar round lg" src="/assets/image/gakki0.jpg" mode="aspectFill"></image>
-    <view class="date"> 13:23</view>
-  </view>
-</view>
-
-<view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
-  <view class="action">
-    <text class="cuIcon-sound text-grey"></text>
-  </view>
-  <input class="solid-bottom" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10"></input>
+</scroll-view>
+<view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px; height: 94rpx; padding-bottom: 30rpx">
+  <input class="solid-bottom" bindinput="saveText" bindfocus="InputFocus" bindblur="closeInput" value="{{text}}" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10"></input>
   <view class="action">
     <text class="cuIcon-emojifill text-grey"></text>
   </view>

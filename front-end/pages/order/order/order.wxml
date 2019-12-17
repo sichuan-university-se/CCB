@@ -1,0 +1,19 @@
+<!-- pages/order/order.wxml -->
+<view class="bg-white flex margin-sm padding text-center text-grey shadow-warp" style="border-radius: 10rpx">
+  <view class="flex-sub solid-right" data-status="todo" bindtap="switchStatus">
+    <text>未完成</text>
+  </view>
+  <view class="flex-sub solid-right" data-status="finish" bindtap="switchStatus">
+    <text>已完成</text>
+  </view>
+</view>
+<view wx:for="{{checkFinish ? finishList : orderList}}" wx:key data-id="{{item.id}}" data-type="requirement" bindtap="checkOrderDetail">
+  <view class="bg-white liked-item">
+    <image class="cu-avatar lg" src="{{item.user.avatar}}"></image>
+    <view class="liked-title">{{item.requirement.title}}</view>
+    <view wx:if="{{item.requirement.price}}" class="liked-price text-red text-sm">
+      <text class="text-grey">{{item.requirement.date}}</text>
+      ￥{{item.requirement.price}}
+    </view>
+  </view>
+</view>

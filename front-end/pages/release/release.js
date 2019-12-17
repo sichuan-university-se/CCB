@@ -14,8 +14,7 @@ Page({
     },
     picker: ['望江', '江安', '跨校区'],
     index: null,
-    imgList: [],
-    params: {}
+    imgList: []
   },
 
   /**
@@ -26,60 +25,14 @@ Page({
     const currentPage = pages[pages.length - 1];
     console.log(currentPage.options);
     this.setData({
-      type: currentPage.options.type,
-      params: {
-        type: currentPage.options.type
-      }
+      type: currentPage.options.type
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  changeCampus(e) {
+    this.setData({
+      index: e.detail.value
+    })
   },
 
   ChooseImage() {
@@ -123,52 +76,40 @@ Page({
       }
     })
   },
-  titleInput(e) {
-    this.setData({
-      params: {
-        ...this.data.params,
-        title: e.detail.value
-      }
-    })
-  },
-  textareaInput(e) {
-    this.setData({
-      params: {
-        ...this.data.params,
-        detail: e.detail.value
-      }
-    })
-  },
-  priceInput(e) {
-    this.setData({
-      params: {
-        ...this.data.params,
-        price: e.detail.value
-      }
-    })
-  },
-  changeCampus(e) {
-    this.setData({
-      index: e.detail.value,
-      params: {
-        ...this.data.params,
-        campus: e.detail.value
-      }
-    })
-  },
+
   handleFormSubmit(e) {
     // 收集表单数据，并进行提交
-    const params = this.data.params;
-    console.log(this.data)
-    request.postData('/releaseItem', params).then(res => {
-      console.log(res)
+    console.log(e.detail)
+    const params = { ...e.detail.value, type: this.data.type }
+    if (params.title && params.detail) {
+      const imgList = this.data.imgList
+      const getImgList = imgList.map(item => {
+        return request.uploadImg(item)
+      })
+      Promise.all(getImgList).then(res => {
+        res.map(item => {
+          const src = JSON.parse(item).url
+          params.detail += `[img src="${src}"]`
+        })
+        console.log(params.detail)
+        request.postData('/releaseItem', params)
+      }).then(res => {
+        wx.showToast({
+          title: '发布成功',
+          duration: 1000
+        })
+        // 设置发布数目缓存，每次发布均将缓存数目加一
+        wx.setStorageSync('rlsNum', wx.getStorageSync('rlsNum') ? wx.getStorageSync('rlsNum') + 1 : 1)
+        wx.switchTab({
+          url: '../index/index'
+        })
+      })
+    } else {
       wx.showToast({
-        title: '发布成功',
+        title: params.title ? '请输入详情' : '请输入标题',
+        icon: 'none',
         duration: 1000
       })
-      wx.switchTab({
-        url: '../index/index'
-      })
-    })
+    }
   }
 })

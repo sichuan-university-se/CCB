@@ -5,14 +5,14 @@
   </view>
   <view class="cu-form-group">
     <view class="grid col-4 grid-square flex-sub">
-      <view class="bg-img" bindtap="ViewImage" data-url="{{currentImage[0]}}">
-        <image src='{{currentImage[0]}}' mode='aspectFill'></image>
-        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-          <text class="cuIcon-close"></text>
-        </view>
-      </view>
       <view class="solids" bindtap="ChooseImage" wx:if="{{currentImage.length<1}}">
         <text class="cuIcon-cameraadd"></text>
+      </view>
+      <view class="bg-img" bindtap="ViewImage" data-url="{{currentImage[0]}}" wx:else>
+        <image src='{{currentImage[0]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImage" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
       </view>
     </view>
   </view>

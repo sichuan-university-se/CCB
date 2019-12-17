@@ -1,0 +1,22 @@
+<!-- pages/selfrls/selfrls.wxml -->
+<view class="bg-white flex margin-sm padding text-center text-grey shadow-warp" style="border-radius: 10rpx">
+  <view class="flex-sub solid-right" data-option="activity" bindtap="showAct">
+    <text>活动</text>
+  </view>
+  <view class="flex-sub solid-right" data-option="requirement" bindtap="showReq">
+    <text>需求</text>
+  </view>
+  <view class="flex-sub" data-option="item" bindtap="showItem">
+    <text>商品</text>
+  </view>
+</view>
+<view wx:for="{{selfList}}" wx:key>
+  <view class="bg-white liked-item">
+    <image class="cu-avatar lg" src="/assets/image/test.png"></image>
+    <view class="liked-title">{{item.title}}</view>
+    <view wx:if="{{item.price}}" class="liked-price text-red text-sm">
+      <text class="text-grey">{{item.date}}</text>
+      ￥{{item.price}}
+    </view>
+  </view>
+</view>

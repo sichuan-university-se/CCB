@@ -2,18 +2,18 @@
 
 <view class="container">
   <view class="swiper-tab">
-    <view class="tab-item {{ currentTab == 0 ? 'on' : '' }}" data-current="0" bindtap="switchTab">消息</view>
-    <view class="tab-item {{ currentTab == 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">通知</view>
+    <view class="tab-item {{ currentTab === 0 ? 'on' : '' }}" data-current="0" bindtap="switchTab">消息</view>
+    <view class="tab-item {{ currentTab === 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">通知</view>
   </view>
 
   <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
     <swiper-item>
       <scroll-view scroll-y='true' style="height: {{clientHeight?clientHeight+'px':'auto'}}">
         <view class="cu-list menu-avatar body">
-          <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{msgList}}" wx:key bindtap="checkChatRecord" data-index="{{item.id}}">
+          <view class="cu-item {{modalName==='move-box-'+ index?'move-cur':''}}" wx:for="{{msgList}}" wx:key bindtap="checkChatRecord" data-peerid="{{item.uid}}">
             <image class="cu-avatar round lg" src="{{item.avatar}}" mode="aspectFill"></image>
             <view class="content">
-              <view class="text-grey">{{item.name}}</view>
+              <view class="text-grey">{{item.username}}</view>
               <view class="text-gray text-sm">
                 {{item.lastMsg}}
               </view>
@@ -34,7 +34,7 @@
             <view class="image note-img">
               <image src="/assets/image/test.png" mode="aspectFill"></image>
             </view>
-            <view class="text-lg text-grey text-cut padding-lr-xs padding-bottom-xs">您发布的{{item.type=='act'?'组队活动':'需求任务'}}“{{item.title}}”已经有同学联系您啦，快去查看吧 您发布的组队活动已经有同学联系您啦，快去查看吧</view>
+            <view class="text-lg text-grey text-cut padding-lr-xs padding-bottom-xs">您发布的{{item.type==='act'?'组队活动':'需求任务'}}“{{item.title}}”已经有同学联系您啦，快去查看吧 您发布的组队活动已经有同学联系您啦，快去查看吧</view>
           </view>
         </view>
       </scroll-view>

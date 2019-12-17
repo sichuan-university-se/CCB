@@ -2,15 +2,15 @@
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg text-grey">
     <view class="userinfo">
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname text-xl margin-top-xs text-bold">{{userInfo.nickName}}</text>
+      <image class="userinfo-avatar" src="{{userInfo.avatar}}" mode="cover"></image>
+      <text class="userinfo-nickname text-xl margin-top-xs text-bold">{{userInfo.username}}</text>
     </view>
     <view class="text-xl margin-top-sm text-bold">
       川川帮
       <text class="text-df text-bold">v1.0.0</text>
     </view>
   </view>
-  <view class="padding flex text-center text-grey bg-white shadow-warp">
+  <view class="padding-sm flex text-center text-grey bg-white solids-bottom">
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-blue">{{visitNum}}</view>
       <view class="margin-top-sm">
@@ -25,22 +25,38 @@
         收藏
       </view>
     </view>
-    <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-green">{{historyNum}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-calendar text-yellow"></text>
-        记录
-      </view>
-    </view>
-    <view class="flex flex-sub flex-direction">
-      <view class="text-xxl text-cyan">{{refundNum}}</view>
+    <navigator class="flex flex-sub flex-direction" url="/pages/refund/refund" hover-class="none">
+      <view class="text-xxl text-cyan">{{userInfo.balance}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-refund text-yellow"></text>
         余额
       </view>
+    </navigator>
+  </view>
+  <view class="padding-sm flex text-center text-grey bg-white">
+    <navigator class="flex flex-sub flex-direction solid-right" url="/pages/selfrls/selfrls" hover-class="none">
+      <view class="text-xxl text-green">{{releaseNum}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-edit text-yellow"></text>
+        发布
+      </view>
+    </navigator>
+    <navigator class="flex flex-sub flex-direction solid-right" url="/pages/order/order/order" hover-class="none">
+      <view class="text-xxl text-green">{{orderNum}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-order text-yellow"></text>
+        订单
+      </view>
+    </navigator>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green">{{acceptNum}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-deliver text-yellow"></text>
+        接取
+      </view>
     </view>
   </view>
-  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view class="cu-list menu card-menu margin-top margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/about/auth/auth" hover-class="none">
         <text class="cuIcon-profilefill text-green"></text>

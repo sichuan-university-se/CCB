@@ -1,0 +1,18 @@
+<!-- pages/test/test.wxml -->
+<view class="bg-white flex margin-sm padding text-center text-grey shadow-warp" style="border-radius: 10rpx">
+  <view class="flex-sub solid-right">
+    <text>新闻</text>
+  </view>
+  <view class="flex-sub solid-right" bindtap="showSchoolBus">
+    <text>校车</text>
+  </view>
+</view>
+<view wx:for="{{newsList}}" wx:key>
+  <view class="bg-white liked-item" bindtap="checkDetail" data-index="{{index}}">
+    <image class="cu-avatar lg" src="{{item.pics[0]}}"></image>
+    <view class="liked-title">{{item.name}}</view>
+    <view class="liked-price text-red text-sm">
+      <text class="text-grey">{{item.date}}</text>
+    </view>
+  </view>
+</view>

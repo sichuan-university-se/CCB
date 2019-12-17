@@ -1,6 +1,6 @@
 // 封装get以及post请求
 
-const baseUrl = 'http://192.168.31.66:5000/wx';
+const baseUrl = 'https://www.chiyumao.com/wx';
 
 function getData(api, param) {
   return new Promise((resolve, reject) => {
@@ -37,6 +37,7 @@ function postData(api, params) {
 
 function uploadImg(path) {
   return new Promise((resolve, reject) => {
+    const openid = wx.getStorageSync('openid')
     wx.uploadFile({
       url: `${baseUrl}/uploadImg?openid=${openid}`,
       header: {
@@ -45,7 +46,9 @@ function uploadImg(path) {
       },
       filePath: path,
       name: 'img',
-      success: resolve,
+      success: (res) => {
+        resolve(res.data)
+      },
       fail: reject
     })
   })

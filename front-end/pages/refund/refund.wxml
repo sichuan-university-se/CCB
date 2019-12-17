@@ -1,0 +1,33 @@
+<!-- pages/refund/refund.wxml -->
+<view class="flex flex-direction align-center" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+  <view class="flex flex-direction justify-center" style="height: 60%">
+    <view class="text-center text-xl">
+      <text class="cuIcon-refund"></text>
+      我的余额
+    </view>
+    <view class="text-center text-sl text-bold">{{balance}}</view>
+  </view>
+  <view class="flex flex-direction justify-around">
+    <button class="cu-btn lg bg-green" bindtap="showModal" data-target="recharge">充值</button>
+    <button class="cu-btn lg bg-white">提现</button>
+  </view>
+</view>
+<view class="cu-modal {{modalName==='recharge'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">充值</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <input type="digit" bindinput="getRechargeNum" placeholder="请输入金额" />
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="rechargeMoney">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

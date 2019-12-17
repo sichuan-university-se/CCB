@@ -19,7 +19,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     const pages = getCurrentPages();
     const currentPage = pages[pages.length - 1];
     console.log(currentPage.options);
@@ -36,16 +36,6 @@ Page({
       imgList: ['/assets/image/gakki0.jpg', '/assets/image/gakki1.jpg', '/assets/image/test.png'],
       price: '40'
     })
-    const likeList = wx.getStorageSync('likeList');
-    if (Array.isArray(likeList) && likeList.includes(currentId)) {
-      this.setData({
-        liked: true
-      })
-    } else {
-      this.setData({
-        liked: false
-      })
-    }
   },
 
   switchLike(e) {
@@ -60,7 +50,7 @@ Page({
       }).then(res => {
         console.log(res)
         this.setData({
-          liked: true
+          itemDetail: { ...this.data.itemDetail, like: 'true' }
         })
       })
     } else {
@@ -76,7 +66,7 @@ Page({
       }).then(res => {
         console.log(res)
         this.setData({
-          liked: false
+          itemDetail: { ...this.data.itemDetail, like: 'false'}
         })
       })
     }

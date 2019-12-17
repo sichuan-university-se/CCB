@@ -1,0 +1,47 @@
+<!-- pages/order/detail/detail.wxml -->
+<view class="cu-card case bg-white" style="margin-bottom: 55px">
+  <view class="cu-list menu-avatar">
+    <view class="text-center text-lg padding-sm ">订单详情</view>
+    <view class="cu-item solids-top">
+      <image class="cu-avatar round lg" src="{{acceptUser.avatar}}" mode="aspectFill" bindtap="contactOthers"></image>
+      <view class="content flex-sub">
+        <view>接取人：{{acceptUser.username}}</view>
+        <view class="text-gray text-sm flex justify-between">接取时间：{{acceptTime}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="margin solids padding-sm">
+    <view class="text-center text-lg solid-bottom padding-xs">
+      {{orderDetail.requirement.title}}
+    </view>
+    <view class="flex justify-between margin-xs">
+      <text>需求详情</text>
+      <text class="text-sm text-grey text-content text-cut text-right" style="width: 400rpx">{{orderDetail.requirement.detail}}</text>
+    </view>
+    <view class="flex justify-between margin-xs">
+      <text>发布时间</text>
+      <text class="text-sm text-grey text-content">{{orderDetail.requirement.date}}</text>
+    </view>
+    <view class="flex justify-between margin-xs">
+      <text>需求定价</text>
+      <text class="text-sm text-grey text-content">￥{{orderDetail.requirement.price}}</text>
+    </view>
+    <view class="flex justify-between margin-xs">
+      <text>接取人</text>
+      <text class="text-sm text-grey text-content">{{acceptUser.username}}</text>
+    </view>
+    <view class="flex justify-between margin-xs">
+      <text>订单ID</text>
+      <text class="text-sm text-grey text-content">{{orderDetail.id}}</text>
+    </view>
+    <view class="flex justify-between margin-xs">
+      <text>当前状态</text>
+      <text class="text-sm text-grey text-content">{{orderDetail.finish ? '已完成' : '待对方完成'}}</text>
+    </view>
+  </view>
+  <view class="cu-form-group" style="justify-content: flex-end">
+    <button class="cu-btn bg-green" bindtap="{{orderDetail.finish ? 'contactOthers' : 'confirmReqFinish'}}">
+      {{orderDetail.finish ? '联系对方' : '确认完成'}}
+    </button>
+  </view>
+</view>

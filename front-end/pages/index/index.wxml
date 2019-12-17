@@ -1,52 +1,17 @@
 <!-- index.wxml -->
 <view class="container">
   <view class="swiper-tab">
-    <view class="tab-item {{ currentTab == 0 ? 'on' : '' }}" data-current="0" bindtap="switchTab">
-      活动组队
-    </view>
-    <view class="tab-item {{ currentTab == 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">
+    <view class="tab-item {{ currentTab === 0 ? 'on' : '' }}" data-current="0" bindtap="switchTab">
       校内需求
     </view>
-    <view class="tab-item {{ currentTab == 2 ? 'on' : '' }}" data-current="2" bindtap="switchTab">
+    <view class="tab-item {{ currentTab === 1 ? 'on' : '' }}" data-current="1" bindtap="switchTab">
+      活动组队
+    </view>
+    <view class="tab-item {{ currentTab === 2 ? 'on' : '' }}" data-current="2" bindtap="switchTab">
       闲置交易
     </view>
   </view>
   <swiper class="swiper" current="{{ currentTab }}" bindchange="swiperChange" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
-    <swiper-item>
-      <scroll-view scroll-y='true'>
-        <view class="swiper-item">
-          <swiper class="ad-swiper shadow-blur bg-img margin" indicator-dots="true" autoplay="true" interval="3000" style="overflow: hidden">
-            <swiper-item wx:for="{{topImages}}" wx:key>
-              <image src="{{item}}" mode="aspectFill"></image>
-            </swiper-item>
-          </swiper>
-          <view class="text-grey bg-white shadow-warp padding-lr">
-            <view class="cu-form-group">
-              <view class="margin-right">
-                <picker bindchange="campusChange" value="{{campusIndex}}" range="{{campusPicker}}">
-                  <view class="picker">
-                    {{campusIndex?campusPicker[campusIndex]:currentCampus}}
-                  </view>
-                </picker>
-              </view>
-              <input class="margin-left" placeholder="搜索"></input>
-              <text class="cuIcon-search text-cyan"></text>
-            </view>
-          </view>
-          <view class="content margin">
-            <view class="cu-list menu-avatar">
-              <view class="cu-item solid-bottom" wx:for="{{actList}}" wx:key bindtap="checkDetail" data-id="{{item.id}}" data-type="act">
-                <view class="rls-content">
-                  <view class="text-lg">{{item.title}}</view>
-                </view>
-                <view class="rls-time text-grey text-sm">{{item.time}}</view>
-                <image class="rls-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
-              </view>
-            </view>
-          </view>
-        </view>
-      </scroll-view>
-    </swiper-item>
     <swiper-item>
       <scroll-view scroll-y='true' style="height: {{clientHeight?clientHeight+'px':'auto'}}">
         <view class="swiper-item">
@@ -70,7 +35,7 @@
           </view>
           <view class="content margin">
             <view class="cu-list menu-avatar">
-              <view class="cu-item solid-bottom" wx:for="{{reqList}}" wx:key bindtap="checkDetail" data-id="{{item.id}}" data-type="req">
+              <view class="cu-item solid-bottom" wx:for="{{reqList}}" wx:key bindtap="checkDetail" data-id="{{item.id}}" data-type="requirement">
                 <view class="rls-content">
                   <view class="text-lg">{{item.title}}</view>
                 </view>
@@ -78,6 +43,41 @@
                   <text class="text-red">￥{{item.price}}</text>
                   {{item.time}}
                 </view>
+                <image class="rls-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y='true'>
+        <view class="swiper-item">
+          <swiper class="ad-swiper shadow-blur bg-img margin" indicator-dots="true" autoplay="true" interval="3000" style="overflow: hidden">
+            <swiper-item wx:for="{{topImages}}" wx:key>
+              <image src="{{item}}" mode="aspectFill"></image>
+            </swiper-item>
+          </swiper>
+          <view class="text-grey bg-white shadow-warp padding-lr">
+            <view class="cu-form-group">
+              <view class="margin-right">
+                <picker bindchange="campusChange" value="{{campusIndex}}" range="{{campusPicker}}">
+                  <view class="picker">
+                    {{campusIndex?campusPicker[campusIndex]:currentCampus}}
+                  </view>
+                </picker>
+              </view>
+              <input class="margin-left" placeholder="搜索"></input>
+              <text class="cuIcon-search text-cyan"></text>
+            </view>
+          </view>
+          <view class="content margin">
+            <view class="cu-list menu-avatar">
+              <view class="cu-item solid-bottom" wx:for="{{actList}}" wx:key bindtap="checkDetail" data-id="{{item.id}}" data-type="activity">
+                <view class="rls-content">
+                  <view class="text-lg">{{item.title}}</view>
+                </view>
+                <view class="rls-time text-grey text-sm">{{item.time}}</view>
                 <image class="rls-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
               </view>
             </view>
@@ -126,7 +126,7 @@
       </scroll-view>
     </swiper-item>
   </swiper>
-  <view class="cu-modal {{modalName=='RadioModal'?'show':''}}">
+  <view class="cu-modal {{modalName==='RadioModal'?'show':''}}">
     <view class="cu-dialog">
       <view class="margin-sm text-lg">请选择所在校区</view>
       <radio-group class="block">

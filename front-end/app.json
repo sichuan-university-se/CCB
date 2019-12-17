@@ -10,10 +10,16 @@
     "pages/chat/chat",
     "pages/goods/goods",
     "pages/release/release",
+    "pages/refund/refund",
+    "pages/selfrls/selfrls",
+    "pages/order/order/order",
+    "pages/order/detail/detail",
     "pages/about/about/about",
     "pages/about/auth/auth",
     "pages/about/proposal/proposal",
-    "pages/about/settings/settings"
+    "pages/about/settings/settings",
+    "pages/cheat/test/test",
+    "pages/cheat/testnews/testnews"
   ],
   "window": {
     "backgroundTextStyle": "dark",

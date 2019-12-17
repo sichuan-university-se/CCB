@@ -1,21 +1,22 @@
 <!-- pages/liked/liked.wxml -->
-<view>
-  <view class="bg-white flex margin-sm padding text-center text-grey shadow-warp" style="border-radius: 10rpx">
-    <view class="flex-sub solid-right">
-      <text>活动</text>
-    </view>
-    <view class="flex-sub solid-right">
-      <text>需求</text>
-    </view>
-    <view class="flex-sub">
-      <text>商品</text>
-    </view>
+<view class="bg-white flex margin-sm padding text-center text-grey shadow-warp" style="border-radius: 10rpx">
+  <view class="flex-sub solid-right" data-option="activity" bindtap="showOption">
+    <text>活动</text>
   </view>
-  <view wx:for="{{likedList}}" wx:key>
-    <view class="bg-white liked-item">
-      <image class="cu-avatar lg" src="/assets/image/test.png"></image>
-      <view class="liked-title">{{item.title}}</view>
-      <view wx:if="{{item.price}}" class="liked-price text-red">￥{{item.price}}</view>
+  <view class="flex-sub solid-right" data-option="requirement" bindtap="showOption">
+    <text>需求</text>
+  </view>
+  <view class="flex-sub" data-option="item" bindtap="showOption">
+    <text>商品</text>
+  </view>
+</view>
+<view wx:for="{{showOption ? likedList : totalList}}" wx:key>
+  <view class="bg-white liked-item" data-type="{{item.type}}" data-id="{{item.id}}" bindtap="checkDetail">
+    <image class="cu-avatar lg" src="{{item.user.avatar}}"></image>
+    <view class="liked-title">{{item.title}}</view>
+    <view wx:if="{{item.price}}" class="liked-price text-red text-sm">
+      <text class="text-grey">{{item.date}}</text>
+      ￥{{item.price}}
     </view>
   </view>
 </view>

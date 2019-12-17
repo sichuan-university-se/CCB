@@ -1,1 +1,21 @@
 /* pages/detail/detail.wxss */
+
+.share-button {
+  background-color: #fff;
+  border-radius: 0;
+  line-height: 1;
+  font-size: 22rpx;
+  color: var(--darkGray);
+  z-index: 10;
+}
+
+.share-button::after {
+  border: none;
+}
+
+.detail-tabbar {
+  position: fixed;
+  height: 55px;
+  width: 100%;
+  bottom: 0;
+}

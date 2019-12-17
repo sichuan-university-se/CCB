@@ -1,6 +1,6 @@
 // pages/self/self.js
-
 const app = getApp()
+const request = require('../../utils/request.js')
 
 Page({
 
@@ -8,56 +8,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     visitNum: 0,
     likeNum: 0,
-    historyNum: 0,
-    refundNum: 100
+    releaseNum: 0,
+    orderNum: 0,
+    acceptNum: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
-    if (app.globalData.userInfo) {
+  onLoad: function () {
+    request.getData('/getSelfInfo').then(res => {
+      console.log(res)
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        userInfo: res.data.value
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     const visitCount = wx.getStorageSync('visitCount');
     const likeList = wx.getStorageSync('likeList');
+    const releaseNum = wx.getStorageSync('rlsNum');
     this.setData({
       visitNum: visitCount ? visitCount : 0,
-      likeNum: likeList ? likeList.length : 0
+      likeNum: likeList ? likeList.length : 0,
+      releaseNum: releaseNum ? releaseNum : 0
+    })
+    request.getData('/getSelfInfo').then(res => {
+      this.setData({
+        userInfo: res.data.value
+      })
     })
   },
 
@@ -84,5 +69,5 @@ Page({
       urls: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573192480035&di=efcd66c748340bbfcdc7cd12be5380a3&imgtype=0&src=http%3A%2F%2Fpic2.orsoon.com%2F2017%2F0721%2F20170721021629929.png'],
       current: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573192480035&di=efcd66c748340bbfcdc7cd12be5380a3&imgtype=0&src=http%3A%2F%2Fpic2.orsoon.com%2F2017%2F0721%2F20170721021629929.png'
     })
-  }
+  },
 })

@@ -1,0 +1,28 @@
+/* pages/selfrls/selfrls.wxss */
+
+.liked-item {
+    margin: 20rpx;
+    position: relative;
+    display: flex;
+    border-radius: 10rpx;
+    overflow: hidden;
+    height: 180rpx;
+}
+
+.cu-avatar {
+    position: absolute;
+    left: 30rpx;
+    top: 30rpx;
+}
+
+.liked-item .liked-title {
+    position: absolute;
+    left: 160rpx;
+    top: 30rpx;
+}
+
+.liked-item .liked-price {
+    position: absolute;
+    left: 30rpx;
+    bottom: 10rpx;
+}
