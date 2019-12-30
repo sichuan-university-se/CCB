@@ -147,7 +147,7 @@ Page({
         })
         setTimeout(() => {
           wx.navigateTo({
-            url: `../order/detail/detail?type=${this.data.type}&id=${this.data.id}`,
+            url: `../order/detail/detail?type=${this.data.type}&id=${res.data.id}`,
           })
         }, 1000)
       }

@@ -42,6 +42,27 @@ Page({
   confirmReqFinish(e) {
     request.postData('/reqFinish', { id: this.data.id }).then(res => {
       console.log(res)
+      wx.showToast({
+        title: '成功完成',
+        duration: 1000
+      })
+      wx.switchTab({
+        url: '../../index/index'
+      })
     })
-  }
+  },
+
+  switchToChat(e) {
+    if (!this.data.self) {
+      wx.navigateTo({
+        url: `../chat/chat?selfId=${this.data.acceptUser.id}&peerId=${this.data.requirement.user.id}`
+      })
+    } else {
+      wx.showToast({
+        title: '此为您发布！',
+        duration: 1000,
+        icon: 'none'
+      })
+    }
+  },
 })

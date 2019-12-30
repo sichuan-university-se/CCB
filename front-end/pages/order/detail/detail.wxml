@@ -41,7 +41,7 @@
   </view>
   <view class="cu-form-group" style="justify-content: flex-end">
     <button class="cu-btn bg-green" bindtap="{{orderDetail.finish ? 'contactOthers' : 'confirmReqFinish'}}">
-      {{orderDetail.finish ? '联系对方' : '确认完成'}}
+      {{orderDetail.requirement.user.id == acceptUser.id ? '联系对方' : '确认完成'}}
     </button>
   </view>
 </view>
